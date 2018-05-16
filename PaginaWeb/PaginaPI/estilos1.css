@@ -1,0 +1,143 @@
+html, body{
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+}
+
+#contenedor{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+.logo{
+	position: relative;
+	width: 100%;
+	height: 50%;
+	background: url("gif.gif")center top;
+	background-color: black;
+	text-align: center;
+}
+
+
+
+h2{
+	font-size: 245%;
+	font-family: Courier;
+}
+
+hr{
+	color: black;
+}
+
+#descripcion{
+	position: relative;
+	font-size: 125%;
+	margin-top: 13%;
+	margin-left: 20%;
+	text-align: center;
+	width: 60%;
+	height:50%;
+}
+
+#Descargar{
+	position: relative;
+	text-align: center;
+	width: 100%
+	height:50%;
+}
+
+#Descargar img{
+	padding: 0.5%;
+}
+
+#menu{
+	font-family: Courier;
+	font-size: 112.5%;
+	font-weight: bold;
+}
+#menu ul {
+    list-style-type: none;
+    margin:0%;
+    padding: 0%;
+    overflow: hidden;
+    background-color: #5DE9B4;
+    display:flex;;
+}
+
+#menu li {
+    float: left;
+    flex-grow: 1;
+}
+
+
+#menu li a {
+    display:block;
+    color: black;
+    text-align: center;
+    padding: 15px 20px;
+    text-decoration: none;
+}
+
+#menu li a:hover {
+    background: url("gif.gif")center top;
+    color:#5DE9B4;
+}
+
+#redes{
+	width: 100%;
+	height: 30%;
+	color: white;
+	background-color: grey;
+	border-top: solid;
+	border-color: black;
+}
+
+a{
+	color: white;
+	text-decoration: none;
+}
+
+#lista{
+	width: 33.3%;
+	height: 90%;
+	color: white;
+	background-color: grey;
+	margin-top: 0px;
+	text-decoration-line: none;
+}
+
+#copy{
+	position: relative;
+	width:40%;
+	height:30%;
+	background-color: grey;
+	margin-top: -130px;
+	margin-left: 29%;
+	text-align: center;
+	}
+
+#contactos{
+	position: relative;
+	width:25%;
+	height:30%;
+	background-color: grey;
+	margin-top: -100px;
+	margin-left: 75%;
+	text-align: center;
+}
+
+#contactos img{
+	padding: 10px;
+}
+
+@media screen and (max-width: 640px){
+}
+
+@media screen and (max-width: 1024px) and (min-width: 640px){
+	
+}
+
+@media screen and (max-width: 1024px){
+	
+}
