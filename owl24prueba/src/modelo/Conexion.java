@@ -13,7 +13,7 @@ public class Conexion {
 	private String bbdd; 
 	private String user; 
 	private String pass; 
-	private String url;  
+	private String url;
 	                    
 	private Connection conexion = null;
 	
