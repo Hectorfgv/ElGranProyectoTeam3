@@ -1,0 +1,63 @@
+FUNCIONES OWL24
+
+PAGINA PRINCIPAL:
+
+-Nombre de la aplicación:OWL24h
+-Logo:Imagen de la empresa.
+-Descripción:¿Ya no son horas de que las tiendas estén abiertas? ¡Utiliza OWL24! Y encuentra las máquinas 24horas más cercanas!!
+
+-En esta pagina puedes encontrar, a parte de el logo y el nombre de la empresa, una pequeña descripción sobre la funcion de 
+la aplicación.
+
+-Encontrará dos campos de texto en los cuales va a poder introducir su nombre y su contraseña para poder iniciar sesión en el caso 
+de que ya tenga una cuenta creada. Si no tiene una cuenta creada deberá darle clic al botón registrarse.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+PAGINA DE REGISTRO:
+
+En el caso de que no tenga cuenta deberá registrarse introduciendo el nombre  y contraseña que desee, después de 
+registrarse a podrá inicar sesión.
+
+En esta pantalla también encontrará un botón que le mandará a la pantalla anterior.
+Comprobará que hay un botón llamado SEND el cual enviará los datos que ha introducido en el registro.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+PAGINA CUANDO TE REGISTRAS CON USUARIO NORMAL:
+
+Cuando se registre, le aparecerá un mensaje de agradecimiento por registrarse y ya podrá iniciar sesión.
+Tendrá un botón para volver a la página principal
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+PAGINA DE BUSQUEDA REALIZADA:
+
+Cuando ya haya iniciado sesión encontrará la pantalla inicial de la aplicación el la cual usted va a poder realizar la busqueda,en la barra 
+de búsqueda, de la zona que usted desee para encontrar las máquinas expendedoras más cercanas.
+
+Podrá ver los resultados justo en el area de texto que hay justo debajo. Verá también que hay 2 botones, uno que pone SEARCH y otro que pone CLEAN.
+Con el botón SEARCH iniciará la búsqueda de la zona que usted haya introducido en la barra de busqueda y con el botón CLEAN podrá borrar la busqueda,
+y volver a realizar otra búsqueda de nuevo.
+
+Arriba a la izquierda podra ver su foto de perfil, en la cual usted va a poder acceder dandole clic.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+PAGINA OPCIONES DE USUARIO:
+
+-Foto de Perfil
+-Datos personales del usuario(email,contrasenya)
+-Opcion a cambiar email y contrasenya.
+-Boton atras.
+-Boton FAVS
+-Boton salir a pagina principal.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+PAGINA FAVS:
+
+-Maquinas favoritas
+-Boton atras
+
+-------------------------------------------------------------------------------------------------------------------------------------------
