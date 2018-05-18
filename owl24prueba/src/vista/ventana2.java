@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JFrame;
@@ -16,6 +17,7 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
 import modelo.Conexion;
+import modelo.Maquina;
 import modelo.OpcionesMaquina;
 import modelo.OpcionesUsuario;
 
@@ -58,6 +60,8 @@ public class ventana2 extends JFrame {
 	 * Create the frame.
 	 */
 	public ventana2() {
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -76,14 +80,17 @@ public class ventana2 extends JFrame {
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
+				Conectar();
+				String maq=textBusqueda.getText();
+				ResultSet rs;
+				
 				if (comboBreaker.getSelectedItem().equals("marca")){
+					
 					try{
 						orden = (Statement) conexion.createStatement();
-					    String sql = "INSERT INTO maquinas (nombre,poblacion,direccion1,direccion2) " +
-					                   "VALUES ";
-					    orden.executeUpdate(sql);
-					    System.out.println("Usuario registrado con exito");
-					    
+					    String sql = "SELECT * FROM maquinas WHERE marca LIKE '"+ maq +"'ORDER BY rating";
+					    rs = orden.executeQuery(sql);
+					    System.out.println(rs);
 					   }catch(SQLException se){
 						     
 						      se.printStackTrace();
@@ -106,6 +113,34 @@ public class ventana2 extends JFrame {
 						      }
 						}
 				
+					
+				}else {
+					try{
+						orden = (Statement) conexion.createStatement();
+					    String sql = "SELECT * FROM maquinas WHERE poblacion LIKE '"+maq+"' ORDER BY rating";
+					    rs = orden.executeQuery(sql);
+					    System.out.println(rs);
+					   }catch(SQLException se){
+						     
+						      se.printStackTrace();
+					   }catch(Exception sed){
+						     
+						      sed.printStackTrace();
+					   }finally{
+						      
+						      try{
+						         if(orden!=null)
+						        	 conexion.close();
+						      }catch(SQLException se){
+						    	  se.printStackTrace();
+						      }
+						      try{
+						         if(conexion!=null)
+						        	 conexion.close();
+						      	 }catch(SQLException se){
+						         se.printStackTrace();
+						      }
+						}
 					
 				}
 			}
