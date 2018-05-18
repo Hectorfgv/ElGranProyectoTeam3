@@ -8,6 +8,8 @@ import javax.swing.JComboBox;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
+import modelo.Maquina;
+
 public class OpcionesMaquina {
 	
 	private int machid;
@@ -15,6 +17,8 @@ public class OpcionesMaquina {
 	private String poblacion;
 	private String direccion1;
 	private String direccion2;
+	private double rating;
+	private String marca;
 	private Connection conexion;
 	private Statement orden = null;
 	
@@ -30,6 +34,46 @@ public class OpcionesMaquina {
 		    orden.executeUpdate(sql);
 		    System.out.println("Usuario registrado con exito");
 		    
+		   }catch(SQLException se){
+			     
+			      se.printStackTrace();
+		   }catch(Exception e){
+			     
+			      e.printStackTrace();
+		   }finally{
+			      
+			      try{
+			         if(orden!=null)
+			        	 conexion.close();
+			      }catch(SQLException se){
+			    	  se.printStackTrace();
+			      }
+			      try{
+			         if(conexion!=null)
+			        	 conexion.close();
+			      	 }catch(SQLException se){
+			         se.printStackTrace();
+			      }
+			}
+	}
+	public void mostrarMaquinas(String a){
+		
+		
+		ResultSet rs;
+		Maquina m1 = new Maquina();
+		try{
+			
+			orden = (Statement) conexion.createStatement();
+	
+		    String sql = "SELECT * FROM maquinas WHERE marca LIKE'"+a+"'+ ORDER BY rating,poblacion";
+		    rs = orden.executeQuery(sql);
+		    
+		    while(rs.next()){
+		    	 m1.setPoblacion(rs.getString("poblacion"));
+		    	 m1.setRating(rs.getDouble("rating"));
+    
+		    }
+		   
 		   }catch(SQLException se){
 			     
 			      se.printStackTrace();

@@ -31,8 +31,9 @@ CREATE TABLE `maquinas` (
   `nombre` varchar(15) NOT NULL,
   `poblacion` varchar(20) NOT NULL,
   `direccion1` varchar(15) NOT NULL,
-  `direccion2` int(8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `direccion2` int(8) NOT NULL,
+  `rating` double null default 0
+) ;
 
 --
 -- Volcado de datos para la tabla `maquinas`
@@ -59,7 +60,7 @@ CREATE TABLE `usuarios` (
   `poblacion` varchar(20) DEFAULT NULL,
   `email` varchar(30) NOT NULL,
   `pasword` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -75,14 +76,7 @@ INSERT INTO `usuarios` (`userid`, `admin`, `cuenta`, `nombre`, `apellido1`, `ape
 (10, 0, 'dadadad', NULL, NULL, NULL, NULL, NULL, 'dadadad', 'dadadad'),
 (11, 0, 'pedro', NULL, NULL, NULL, NULL, NULL, 'pedro', 'pedro'),
 (12, 0, 'papa', NULL, NULL, NULL, NULL, NULL, 'papa', 'papa'),
-(13, 0, 'papa', NULL, NULL, NULL, NULL, NULL, 'papa', 'papa'),
-(14, 0, 'papa', NULL, NULL, NULL, NULL, NULL, 'papa', 'papa'),
-(15, 0, 'papa', NULL, NULL, NULL, NULL, NULL, 'papa', 'papa'),
-(16, 0, 'papa', NULL, NULL, NULL, NULL, NULL, 'papa', 'papa'),
-(17, 0, 'papa', NULL, NULL, NULL, NULL, NULL, 'papa', 'papa'),
-(18, 0, 'papa', NULL, NULL, NULL, NULL, NULL, 'papa', 'papa'),
-(19, 0, 'papa', NULL, NULL, NULL, NULL, NULL, 'papa', 'papa'),
-(20, 0, 'papa12', NULL, NULL, NULL, NULL, NULL, 'papa12', 'papa12');
+(13, 0, 'papa12', NULL, NULL, NULL, NULL, NULL, 'papa12', 'papa12');
 
 --
 -- Índices para tablas volcadas

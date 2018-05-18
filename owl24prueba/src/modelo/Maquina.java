@@ -8,11 +8,34 @@ public class Maquina {
 	private String poblacion="";
 	private String direccion1="";
 	private int direccion2=0;
+	private double rating=0.0;
+	private String marca;
 
 	public Maquina() {
 		
 	}
 	
+	
+	public double getRating() {
+		return rating;
+	}
+
+
+	public void setRating(double rating) {
+		this.rating = rating;
+	}
+
+
+	public String getMarca() {
+		return marca;
+	}
+
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+
 	public int getMachid() {
 		return machid;
 	}
