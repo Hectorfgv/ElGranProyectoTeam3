@@ -2,6 +2,8 @@ package modelo;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -154,13 +156,30 @@ public class OpcionesUsuario {
 						    }
 				    }  	
 				       
-				 } if ((log1==false) && (log2==false)) {
-					  		
+				 } 
+			        // Patrón para validar el email
+			        Pattern pattern = Pattern
+			                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+			                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{3})$");
+			 
+			        // El email a validar
+			        String emailpr = email;
+			 
+			        Matcher mather = pattern.matcher(emailpr);
+			 
+			        if (mather.find() == true && (log1==false) && (log2==false)) {
+			            System.out.println("El email ingresado es válido.");
+			            
 					  	orden = (Statement) conexion.createStatement();
 					  String sql2 = "INSERT INTO usuarios (cuenta,email,pasword) " +
 					             "VALUES ('"+cuenta+"', '"+email+"', '"+pass+"')";
 					  orden.executeUpdate(sql2);
-   }			JOptionPane.showMessageDialog(null, "Sucessfully registered");
+			            
+			        } else {
+			            System.out.println("El email ingresado es inválido.");
+			        }
+				
+				 JOptionPane.showMessageDialog(null, "Sucessfully registered");
 				 
 				   }catch(SQLException se){
 					     
