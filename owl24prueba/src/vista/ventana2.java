@@ -22,6 +22,7 @@ import modelo.OpcionesMaquina;
 import modelo.OpcionesUsuario;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -81,68 +82,20 @@ public class ventana2 extends JFrame {
 		btnBuscar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				Conectar();
-				String maq=textBusqueda.getText();
-				ResultSet rs;
+				Object selectedItem = comboBreaker.getSelectedItem();
+				String i=comboBreaker.toString();
+				String item= i.substring( i.lastIndexOf('=')+1, i.lastIndexOf(']'));
 				
-				if (comboBreaker.getSelectedItem().equals("marca")){
-					
-					try{
-						orden = (Statement) conexion.createStatement();
-					    String sql = "SELECT * FROM maquinas WHERE marca LIKE '"+ maq +"'ORDER BY rating";
-					    rs = orden.executeQuery(sql);
-					    System.out.println(rs);
-					   }catch(SQLException se){
-						     
-						      se.printStackTrace();
-					   }catch(Exception sed){
-						     
-						      sed.printStackTrace();
-					   }finally{
-						      
-						      try{
-						         if(orden!=null)
-						        	 conexion.close();
-						      }catch(SQLException se){
-						    	  se.printStackTrace();
-						      }
-						      try{
-						         if(conexion!=null)
-						        	 conexion.close();
-						      	 }catch(SQLException se){
-						         se.printStackTrace();
-						      }
-						}
+				try{
+					mdb.filtarMaquinas(item,textBusqueda.getText());
 				
-					
-				}else {
-					try{
-						orden = (Statement) conexion.createStatement();
-					    String sql = "SELECT * FROM maquinas WHERE poblacion LIKE '"+maq+"' ORDER BY rating";
-					    rs = orden.executeQuery(sql);
-					    System.out.println(rs);
-					   }catch(SQLException se){
-						     
-						      se.printStackTrace();
-					   }catch(Exception sed){
-						     
-						      sed.printStackTrace();
-					   }finally{
-						      
-						      try{
-						         if(orden!=null)
-						        	 conexion.close();
-						      }catch(SQLException se){
-						    	  se.printStackTrace();
-						      }
-						      try{
-						         if(conexion!=null)
-						        	 conexion.close();
-						      	 }catch(SQLException se){
-						         se.printStackTrace();
-						      }
-						}
-					
 				}
+				catch(Exception e1)
+				{
+					JOptionPane.showMessageDialog(null, null);
+				}
+				Conectar();
+			
 			}
 		});
 		
