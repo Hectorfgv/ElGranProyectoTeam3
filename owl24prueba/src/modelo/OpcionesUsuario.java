@@ -1,15 +1,20 @@
 package modelo;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
+
 
 import modelo.Usuario;
+import vista.Gracias;
+
+import vista.LogIn;
+import vista.Register;
 
 public class OpcionesUsuario {
 	
@@ -65,13 +70,13 @@ public class OpcionesUsuario {
 		
 			
 			
-			public void loginUsuarios(String cuenta, String pass){
+			public boolean loginUsuarios(String cuenta, String pass){
 				
 				ResultSet rs;
 				Usuario u=new Usuario();
 				boolean log1=false;
 				boolean log2=false;
-				
+				boolean logResult=false;
 				try{
 					orden = (Statement) conexion.createStatement();
 			
@@ -82,25 +87,32 @@ public class OpcionesUsuario {
 				    String c=rs.getString("cuenta");
 				    
 				    if (c.compareTo(cuenta)==0) {
-				    	System.out.println("Esta bien usuario");
+				    System.out.println("Esta bien usuario");
 				    	log1=true;
 				    	 String p=rs.getString("pasword");
 						    if (p.compareTo(pass)==0) {
-							    	System.out.println("Esta bien contraseña");
+							    System.out.println("Esta bien contraseÃ±a");
 							    	log2=true;
+							    	
+							    	
 						    }
 						    else
-						    	System.out.println("Esta mal contraseña");
+						    System.out.println("Esta mal contraseÃ±a");
+						    logResult=false;
+
 						    
 						    if (log1 && log2)
 						    {
-						    	System.out.println("Autentificado con éxito");
+						    	System.out.println("Autentificado con exito");
+						    	logResult=true;
 						    }
 						   
 				    }  	
 				   
 				    }if (log1==false) {
 				    	System.out.println("Esta mal usuario");
+				    	logResult=false;
+				    	
 				    	
 	  }
 				    
@@ -127,7 +139,11 @@ public class OpcionesUsuario {
 					         se.printStackTrace();
 					      }
 					}
+				
+				return logResult;
+			
 			}
+			
 			public void registroUsuarios(String cuenta, String email, String pass){
 				
 				ResultSet rs;
@@ -160,7 +176,11 @@ public class OpcionesUsuario {
 					  String sql2 = "INSERT INTO usuarios (cuenta,email,pasword) " +
 					             "VALUES ('"+cuenta+"', '"+email+"', '"+pass+"')";
 					  orden.executeUpdate(sql2);
-   }			JOptionPane.showMessageDialog(null, "Sucessfully registered");
+					  Gracias G3 = new Gracias();
+					  G3.setVisible(true);
+					  Register R1 =new Register();
+					  R1.dispose();
+   }			
 				 
 				   }catch(SQLException se){
 					     
