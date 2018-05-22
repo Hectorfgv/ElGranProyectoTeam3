@@ -75,7 +75,7 @@ public class ventana2 extends JFrame {
 		JComboBox comboBreaker = new JComboBox();
 		comboBreaker.addItem("marca");
 		comboBreaker.addItem("poblacion");
-		comboBreaker.setBounds(118, 43, 70, 20);
+		comboBreaker.setBounds(77, 43, 111, 20);
 		contentPane.add(comboBreaker);
 		
 		JButton btnBuscar = new JButton("Buscar");

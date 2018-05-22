@@ -101,10 +101,10 @@ public class OpcionesMaquina {
 	public void filtarMaquinas(String item, String busqueda) {
 		ResultSet rs;
 		Maquina m1=new Maquina();
-		
+		int cont =0;
 		try{
 			orden = (Statement) conexion.createStatement();
-			String sql = "SELECT  poblacion, marca, rating, nombre, direccion1, direccion2 FROM maquinas WHERE "+ item +"= '"+busqueda +"' ORDER BY rating";
+			String sql = "SELECT  poblacion, marca, rating, nombre, direccion1, direccion2 FROM maquinas WHERE "+ item +"= '"+busqueda +"' ORDER BY rating DESC";
 			rs = orden.executeQuery(sql);
 			
 			while(rs.next()) {
@@ -117,8 +117,10 @@ public class OpcionesMaquina {
 					 m1.setDireccion2(rs.getInt("direccion2"));
 					 m1.setRating(rs.getDouble("rating"));
 						
-					 System.out.println("Nombre:" +m1.getNombre()+", Población:"+m1.getPoblacion()+", Calle/Av:"+m1.getDireccion1()+", Número:"+m1.getDireccion2()+", Marca:"+m1.getMarca()+"y Puntuación:"+m1.getRating()+"\n");
+					 cont ++;
+					 System.out.println("Nombre:" +m1.getNombre()+", Población:"+m1.getPoblacion()+", Calle/Av:"+m1.getDireccion1()+", Número:"+m1.getDireccion2()+", Marca:"+m1.getMarca()+" y Puntuación:"+m1.getRating()+"\n");
 			}
+			System.out.println(cont);
 		   
 		   }catch(SQLException se){
 			     
