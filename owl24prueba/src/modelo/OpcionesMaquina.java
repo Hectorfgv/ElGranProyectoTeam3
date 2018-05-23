@@ -4,12 +4,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JComboBox;
+import javax.swing.JTextArea;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
 import modelo.Maquina;
-import vista.ventana2;
+import vista.Inicio;
 
 public class OpcionesMaquina {
 	
@@ -98,7 +99,7 @@ public class OpcionesMaquina {
 			}
 	}
 	
-	public void filtarMaquinas(String item, String busqueda) {
+	public void filtarMaquinas2(String item, String busqueda, JTextArea jarea) {
 		ResultSet rs;
 		Maquina m1=new Maquina();
 		int cont =0;
@@ -118,7 +119,8 @@ public class OpcionesMaquina {
 					 m1.setRating(rs.getDouble("rating"));
 						
 					 cont ++;
-					 System.out.println("Nombre:" +m1.getNombre()+", Población:"+m1.getPoblacion()+", Calle/Av:"+m1.getDireccion1()+", Número:"+m1.getDireccion2()+", Marca:"+m1.getMarca()+" y Puntuación:"+m1.getRating()+"\n");
+					 jarea.setText(jarea.getText()+"Nombre:" +m1.getNombre()+", Población:"+m1.getPoblacion()+", Calle/Av:"+m1.getDireccion1()+", Número:"+m1.getDireccion2()+", Marca:"+m1.getMarca()+" y Puntuación:"+m1.getRating()+"\n"+"--------------------------->"+"\n");
+					 
 			}
 			System.out.println(cont);
 		   
@@ -145,5 +147,4 @@ public class OpcionesMaquina {
 			}
 		
 	}
-
 }

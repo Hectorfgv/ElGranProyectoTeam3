@@ -79,7 +79,7 @@ public class Maquina {
 	}
 
 	public String toString(){
-		return this.machid+" "+this.nombre+" "+this.poblacion+" "+this.direccion1+" "+this.direccion2;
+		return "Nombre:" +this.getNombre()+", Población:"+this.getPoblacion()+", Calle/Av:"+this.getDireccion1()+", Número:"+this.getDireccion2()+", Marca:"+this.getMarca()+" y Puntuación:"+this.getRating()+"\n";
 	}
 
 }
