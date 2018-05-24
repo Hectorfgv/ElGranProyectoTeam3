@@ -54,7 +54,7 @@ public class Inicio extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -65,12 +65,12 @@ public class Inicio extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 	
 	/**
 	 * Create the frame.
 	 */
-	public Inicio() {
+	public Inicio(String nombre) {
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,9 +82,18 @@ public class Inicio extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblPerfil = new JLabel();
-		lblPerfil.setBounds(12, 12, 100, 100);
-		contentPane.add(lblPerfil);
+		JButton btnPerfil = new JButton();
+		btnPerfil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				User_Settings U1 = new User_Settings(nombre);
+				U1.setVisible(true);
+			}
+		});
+		btnPerfil.setBorderPainted(false);
+		btnPerfil.setBounds(12, 12, 100, 100);
+		contentPane.add(btnPerfil);
 		BufferedImage img = null;
 		try {
 			img = ImageIO.read(new File("./img/Perfil.png"));
@@ -94,8 +103,8 @@ public class Inicio extends JFrame {
 		}
 		Image Dimg= img.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 		ImageIcon iIcon= new ImageIcon(Dimg);
-		lblPerfil.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPerfil.setIcon(iIcon);getToolkit();
+		btnPerfil.setHorizontalAlignment(SwingConstants.CENTER);
+		btnPerfil.setIcon(iIcon);getToolkit();
 		
 		JComboBox comboBreaker = new JComboBox();
 		comboBreaker.addItem("Marca");
@@ -108,6 +117,7 @@ public class Inicio extends JFrame {
 		contentPane.add(scrollPane);
 		
 		JTextArea textArea = new JTextArea();
+		textArea.setEditable(false);
 		scrollPane.setViewportView(textArea);
 		textArea.setLineWrap(true);
 		
@@ -120,6 +130,7 @@ public class Inicio extends JFrame {
 				String item= i.substring( i.lastIndexOf('=')+1, i.lastIndexOf(']'));
 				
 				try{
+					textArea.setText("");
 					mdb.filtarMaquinas2(item,textBusqueda.getText(), textArea);
 				
 				}
@@ -174,7 +185,7 @@ public class Inicio extends JFrame {
 			}
 		catch(Exception e)
 		{
-			System.out.println( " Debe haber algún problema con la BBDD o con la conexión.");	
+			System.out.println( " Debe haber algï¿½n problema con la BBDD o con la conexiï¿½n.");	
 		}
 }
 }

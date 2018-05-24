@@ -1,13 +1,13 @@
 package Principal;
 
-import vista.IngresoUsuarios;
+import vista.LogIn;
 
 public class Principal {
 
 	public static void main(String[] args) {
 		
 		
-		IngresoUsuarios frame = new IngresoUsuarios();
+		LogIn frame = new LogIn();
 		frame.setVisible(true);
 
 	}

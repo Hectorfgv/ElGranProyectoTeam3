@@ -34,37 +34,7 @@ public class OpcionesUsuario {
 		public OpcionesUsuario(java.sql.Connection conexion2) {
 			this.conexion=(Connection) conexion2;
 		}
-		
-		public void insertarUsuario(String nombre,String email,String pasword){
-			try{
-				orden = (Statement) conexion.createStatement();
-			    String sql = "INSERT INTO usuarios (cuenta,email,pasword) " +
-			                   "VALUES ('"+nombre+"', '"+email+"', '"+pasword+"')";
-			    orden.executeUpdate(sql);
-			    System.out.println("Usuario registrado con exito");
-			    
-			   }catch(SQLException se){
-				     
-				      se.printStackTrace();
-			   }catch(Exception e){
-				     
-				      e.printStackTrace();
-			   }finally{
-				      
-				      try{
-				         if(orden!=null)
-				        	 conexion.close();
-				      }catch(SQLException se){
-				    	  se.printStackTrace();
-				      }
-				      try{
-				         if(conexion!=null)
-				        	 conexion.close();
-				      	 }catch(SQLException se){
-				         se.printStackTrace();
-				      }
-				}
-		}
+
 		
 		
 		
@@ -205,4 +175,71 @@ public class OpcionesUsuario {
 					}
 			}
 		
+			
+/*ARREGLAR METODO USSER SETTINGS*/
+			/*ARREGLAR METODO USSER SETTINGS*/
+			/*ARREGLAR METODO USSER SETTINGS*/
+			/*ARREGLAR METODO USSER SETTINGS*/
+
+public void ActualizaUsuarios(String nombre, String pass){
+	
+	ResultSet rs;
+	Usuario u=new Usuario();
+	boolean log1=false;
+	boolean log2=false;
+	
+	try{
+		orden = (Statement) conexion.createStatement();
+
+	    String sql ="select cuenta, email FROM usuarios";
+	    rs = orden.executeQuery(sql);
+	    while(rs.next() && log1==false) {
+	    	
+	    String c=rs.getString("cuenta");
+	    
+	    if (c.compareTo(cuenta)==0) {
+	    	System.out.println("Usuario ya existe");
+	    	log1=true;
+	    	 String e=rs.getString("email");
+			    if (e.compareTo(email)==0) {
+				    	System.out.println("Email ya existe");
+				    	log2=true;
+			    }
+	    }  	
+	       
+	 } if ((log1==false) && (log2==false)) {
+		  		
+		  	orden = (Statement) conexion.createStatement();
+		  String sql2 = "INSERT INTO usuarios (cuenta,email,pasword) " +
+		             "VALUES ('"+cuenta+"', '"+email+"', '"+pass+"')";
+		  orden.executeUpdate(sql2);
+		  Gracias G3 = new Gracias();
+		  G3.setVisible(true);
+		  Register R1 =new Register();
+		  R1.dispose();
+}			
+	 
+	   }catch(SQLException se){
+		     
+		      se.printStackTrace();
+	   }catch(Exception e){
+		     
+		      e.printStackTrace();
+	   }finally{
+		      
+		      try{
+		         if(orden!=null)
+		        	 conexion.close();
+		      }catch(SQLException se){
+		    	  se.printStackTrace();
+		      }
+		      try{
+		         if(conexion!=null)
+		        	 conexion.close();
+		      	 }catch(SQLException se){
+		         se.printStackTrace();
+		      }
+		}
+}
+
 }

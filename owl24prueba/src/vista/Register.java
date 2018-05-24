@@ -189,6 +189,7 @@ public class Register extends JFrame {
 				dispose();
 			}
 		});
+		
 		btnAtras.setBorderPainted(false);
 		btnAtras.setBackground(Color.WHITE);
 		btnAtras.setBounds(24, 503, 59, 45);

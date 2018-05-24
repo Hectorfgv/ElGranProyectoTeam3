@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import modelo.Conexion;
 import modelo.OpcionesUsuario;
+import vista.User_Settings;
 
 import javax.swing.JTextField;
 import javax.swing.JSeparator;
@@ -49,6 +50,9 @@ public class LogIn extends JFrame {
 	private OpcionesUsuario udb;
 	private Connection conexion;
 	private boolean connected=false;
+	/*Active directory*/
+	
+	
 
 
 	/**
@@ -96,7 +100,7 @@ public class LogIn extends JFrame {
 		JLabel lblNewLabel = new JLabel();
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(new File("/Users/danielbc/Desktop/El Gran Proyecto/1.png"));
+			img = ImageIO.read(new File("./img/owl.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -107,8 +111,7 @@ public class LogIn extends JFrame {
 		lblNewLabel.setIcon(iIcon);
 		
 		
-		/*(lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("/Users/danielbc/Desktop/El Gran Proyecto/1.png"));*/
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		GroupLayout gl_Pan_Iz = new GroupLayout(Pan_Iz);
 		gl_Pan_Iz.setHorizontalGroup(
 			gl_Pan_Iz.createParallelGroup(Alignment.LEADING)
@@ -162,16 +165,28 @@ public class LogIn extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				Conectar();
-				try{
-					if(udb.loginUsuarios(TxtUser.getText(), TxtPass.getText()) == true) {
-						Inicio I1 = new Inicio();
-				    		I1.setVisible(true);
-				    		dispose();
-						
-					}else{
-						lblError.setVisible(true);
-					};
-								
+				
+	    		String nombre =	TxtUser.getText();	    		
+	    		try{
+					
+					if (TxtUser.getText().equals("Administrador")){
+						db.ActiveDirectory();
+						Inicio I1 = new Inicio(nombre);
+			    		I1.setVisible(true);
+			    		dispose();
+					}
+					else
+					{
+						Conectar();
+						if(udb.loginUsuarios(TxtUser.getText(), TxtPass.getText()) == true) {
+							Inicio I1 = new Inicio(nombre);
+					    		I1.setVisible(true);
+					    		dispose();
+							
+						}else{
+							lblError.setVisible(true);
+						};
+					}
 				}
 				catch(Exception e1)
 				{
