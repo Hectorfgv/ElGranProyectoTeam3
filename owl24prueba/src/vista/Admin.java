@@ -12,6 +12,7 @@ import modelo.OpcionesMaquina;
 import modelo.OpcionesUsuario;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -25,6 +26,7 @@ import javax.swing.ScrollPaneConstants;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
 
 public class Admin extends JFrame {
 
@@ -37,7 +39,7 @@ public class Admin extends JFrame {
 	
 	/*Conexion*/
 	private Conexion db;
-	private OpcionesMaquina udb;
+	private OpcionesMaquina mdb;
 	private Connection conexion;
 	private boolean connected=false;
 	private JTextField TXTMarca;
@@ -132,7 +134,7 @@ public class Admin extends JFrame {
 				
 				Conectar();
 				try{
-					udb.insertarMaquina(TXTNombreM.getText(), TXTPoblacion.getText(),TXTDir1.getText(), TXTDir2.getText(), TXTMarca.getText());
+					mdb.insertarMaquina(TXTNombreM.getText(), TXTPoblacion.getText(),TXTDir1.getText(), TXTDir2.getText(), TXTMarca.getText());
 					dispose();
 				
 				}
@@ -141,10 +143,6 @@ public class Admin extends JFrame {
 					System.out.println( "Maquina aÃ±adida");
 				
 				}}
-				
-				
-				
-				
 				
 			
 		});
@@ -165,6 +163,18 @@ public class Admin extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Conectar();
+				try{
+					mdb.borrarMaquina(Integer.valueOf(textField_4.getText()));
+				}
+				catch(Exception e1)
+				{
+					System.out.println( " Debe haber algún problema con la BBDD o con la conexión.");
+				}
+			}
+		});
 		btnDelete.setBounds(305, 101, 150, 29);
 		contentPane.add(btnDelete);
 		
@@ -173,12 +183,28 @@ public class Admin extends JFrame {
 		scrollPane.setBounds(315, 139, 257, 209);
 		contentPane.add(scrollPane);
 		
-		TextArea textArea = new TextArea();
+		JTextArea textArea = new JTextArea();
 		textArea.setBackground(SystemColor.window);
 		textArea.setEditable(false);
 		scrollPane.setViewportView(textArea);
+		textArea.setLineWrap(true);
 		
 		JButton btnBuscar = new JButton("Ver\nMaquinas");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Conectar();
+				try{
+					textArea.setText("");
+					mdb.mostrarMaquinas2(textArea);
+				
+				}
+				catch(Exception e1)
+				{
+					JOptionPane.showMessageDialog(null, null);
+				}
+				Conectar();
+			}
+		});
 		btnBuscar.setBounds(467, 56, 105, 67);
 		contentPane.add(btnBuscar);
 		
@@ -203,7 +229,7 @@ public class Admin extends JFrame {
 			db=new Conexion("18.217.122.120","owl24?useSSL=false","admin","elgranproyectogrupo3");
 			connected=db.connectDB();
 			conexion=db.getConexion();
-			udb=new OpcionesMaquina(conexion);
+			mdb=new OpcionesMaquina(conexion);
 			
 			if(connected==true) {
 				System.out.println("Entrada aceptada\n");
