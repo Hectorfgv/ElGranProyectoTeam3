@@ -192,7 +192,7 @@ public class LogIn extends JFrame {
 				catch(Exception e1)
 				{
 				
-					JOptionPane.showMessageDialog(null, "User or passcord are wrong");
+					JOptionPane.showMessageDialog(null, "User or password are wrong");
 				}
 
 				}

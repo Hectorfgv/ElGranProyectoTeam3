@@ -34,7 +34,7 @@ public class OpcionesMaquina {
 		    String sql = "INSERT INTO maquinas (nombre,poblacion,direccion1,direccion2,marca) " +
 		                   "VALUES ('"+nombre+"', '"+poblacion+"', '"+direccion1+"', '"+direccion2+"','"+marca+"')";
 		    orden.executeUpdate(sql);
-		    System.out.println("Usuario registrado con exito");
+		    System.out.println("Maquina registrada con exito");
 		    
 		   }catch(SQLException se){
 			     
