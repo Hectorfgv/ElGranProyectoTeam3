@@ -17,7 +17,7 @@ import vista.LogIn;
 import vista.Register;
 
 public class OpcionesUsuario {
-	
+	//Atributos
 		private int userid;
 		private boolean admin=false;
 		private String cuenta;
@@ -30,15 +30,21 @@ public class OpcionesUsuario {
 		private String pasword;
 		private Connection conexion;
 		private Statement orden = null;
-		
+		//Metodos
+		/**
+		 * Método de enlace con la clase conexión
+		 * @param conexion2
+		 */
 		public OpcionesUsuario(java.sql.Connection conexion2) {
 			this.conexion=(Connection) conexion2;
 		}
 
-		
-		
-		
-			
+	/**
+	 * Método de loginUsuarios
+	 * @param cuenta
+	 * @param pass
+	 * @return
+	 */
 			
 			public boolean loginUsuarios(String cuenta, String pass){
 				
@@ -113,11 +119,17 @@ public class OpcionesUsuario {
 				return logResult;
 			
 			}
+			/**
+			 * Método Para registrar Usuarios
+			 * @param cuenta
+			 * @param email
+			 * @param pass
+			 */
 			
 			public void registroUsuarios(String cuenta, String email, String pass){
 				
 				ResultSet rs;
-				Usuario u=new Usuario();
+				
 				boolean log1=false;
 				boolean log2=false;
 				

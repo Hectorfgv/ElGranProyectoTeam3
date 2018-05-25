@@ -2,7 +2,7 @@ package modelo;
 
 public class Usuario {
 
-
+	//Atributos
 	private int userid;
 	private boolean admin=false;
 	private String cuenta="";
@@ -14,11 +14,11 @@ public class Usuario {
 	private String email="";
 	private String pasword="";
 	
-	
+	//COnstructor
 	public Usuario() {
 		
 	}
-
+	//Setters y getters
 	public int getUserid() {
 		return userid;
 	}
@@ -99,7 +99,7 @@ public class Usuario {
 		this.pasword = pasword;
 	}
 	
-	
+	//Método toString
 
 	public String toString(){
 		return this.userid+" "+this.nombre+" "+this.apellido1+" "+this.apellido2+" "+this.edad;

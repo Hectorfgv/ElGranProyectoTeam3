@@ -12,7 +12,10 @@ import javax.naming.directory.InitialDirContext;
 import com.mysql.jdbc.Connection;
 
 public class Conexion {
-	
+	//Atributos
+	/**
+	 * Atributos de la clase conexión
+	 */
 	static final String CONTROLADOR_MYSQL= "com.mysql.jdbc.Driver";
 	
 	private String host; 
@@ -23,7 +26,14 @@ public class Conexion {
 	                    
 	private Connection conexion = null;
 	
-		
+		//Constructores
+	/**
+	 * Constructor con 4 parámetros
+	 * @param HOST
+	 * @param BBDD
+	 * @param USER
+	 * @param PASS
+	 */
 	public Conexion(String HOST,String BBDD,String USER,String PASS) {
 		this.host=HOST;
 		this.bbdd=BBDD;
@@ -31,7 +41,18 @@ public class Conexion {
 		this.pass=PASS;
 		this.url="jdbc:mysql://"+this.host+"/"+this.bbdd;
 	}
-	
+	/**
+	 * getter de Connection
+	 * @return
+	 */
+	public Connection getConexion(){
+		return this.conexion;
+	}
+	//Métodos
+	/**
+	 * Método boolean de conexión del driver
+	 * @return
+	 */
 	public boolean connectDB(){
 		try{
 			
@@ -49,10 +70,10 @@ public class Conexion {
 		return true;
 	}
 	
-	public Connection getConexion(){
-		return this.conexion;
-	}
-
+	
+	/**
+	 * Método de auntenticción de Administrador con el Active Directory
+	 */
 	public void ActiveDirectory () {
 		Hashtable<String, String> env = new Hashtable<String, String>();
 		env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");

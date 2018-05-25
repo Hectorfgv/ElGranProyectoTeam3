@@ -15,7 +15,11 @@ import modelo.Maquina;
 import vista.Inicio;
 
 public class OpcionesMaquina {
-	
+	//Atributos
+	/**
+	 * Atributos de la clase OpcionesMaquina
+	 * desde la clase Maquina
+	 */
 	private int machid;
 	private String nombre;
 	private String poblacion;
@@ -25,11 +29,22 @@ public class OpcionesMaquina {
 	private String marca;
 	private Connection conexion;
 	private Statement orden = null;
-	
+	//Métodos
+	/**
+	 * Método para conexión con la clase Conexión
+	 * @param conexion2
+	 */
 	public OpcionesMaquina(java.sql.Connection conexion2) {
 		this.conexion=(Connection) conexion2;
 	}
-	
+	/**
+	 * Método para insertar Máquinas donde le pasamos cinco parámetros
+	 * @param nombre
+	 * @param poblacion
+	 * @param direccion1
+	 * @param direccion2
+	 * @param marca
+	 */
 	public void insertarMaquina(String nombre,String poblacion,String direccion1,String direccion2, String marca){
 		try{
 			orden = (Statement) conexion.createStatement();
@@ -60,47 +75,13 @@ public class OpcionesMaquina {
 			      }
 			}
 	}
-	public void mostrarMaquinas(String a){
-		
-		
-		ResultSet rs;
-		Maquina m1 = new Maquina();
-		try{
-			
-			orden = (Statement) conexion.createStatement();
 	
-		    String sql = "SELECT * FROM maquinas WHERE marca LIKE'"+a+"'+ ORDER BY marca,poblacion";
-		    rs = orden.executeQuery(sql);
-		    
-		    while(rs.next()){
-		    	 m1.setPoblacion(rs.getString("poblacion"));
-		    	 m1.setRating(rs.getDouble("marca"));
-    
-		    }
-		   
-		   }catch(SQLException se){
-			     
-			      se.printStackTrace();
-		   }catch(Exception e){
-			     
-			      e.printStackTrace();
-		   }finally{
-			      
-			      try{
-			         if(orden!=null)
-			        	 conexion.close();
-			      }catch(SQLException se){
-			    	  se.printStackTrace();
-			      }
-			      try{
-			         if(conexion!=null)
-			        	 conexion.close();
-			      	 }catch(SQLException se){
-			         se.printStackTrace();
-			      }
-			}
-	}
-	
+	/**
+	 * Método para la búsqueda de máquinas y mostrarlas por el JTextArea
+	 * @param item
+	 * @param busqueda
+	 * @param jarea
+	 */
 	public void filtarMaquinas2(String item, String busqueda, JTextArea jarea) {
 		ResultSet rs;
 		Maquina m1=new Maquina();
@@ -148,6 +129,11 @@ public class OpcionesMaquina {
 			}
 		
 	}
+	/**
+	 * Método para mostrar la lista de máquinas existentes en la base de datos
+	 * en el perfil de admin
+	 * @param textArea
+	 */
 	public void mostrarMaquinas2(JTextArea textArea){
 		
 		
@@ -192,6 +178,11 @@ public class OpcionesMaquina {
 			         se.printStackTrace();
 			      }
 		   }}
+	/**
+	 * El método borrarMáquina borra las máquinas de la base de datos
+	 * desde el panel de admin
+	 * @param id
+	 */
 		 public void borrarMaquina (int id){
 						
 						try{

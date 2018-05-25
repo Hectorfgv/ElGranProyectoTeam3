@@ -2,7 +2,7 @@ package modelo;
 
 public class Maquina {
 
-
+	//Aributos
 	private int machid;
 	private String nombre="";
 	private String poblacion="";
@@ -10,12 +10,12 @@ public class Maquina {
 	private int direccion2=0;
 	private double rating=0.0;
 	private String marca;
-
+	//COnstructor
 	public Maquina() {
 		
 	}
 	
-	
+	//Setters y getters
 	public double getRating() {
 		return rating;
 	}
@@ -77,7 +77,7 @@ public class Maquina {
 	public void setDireccion2(int direccion2) {
 		this.direccion2 = direccion2;
 	}
-
+	//Método toString
 	public String toString(){
 		return "Nombre:" +this.getNombre()+", Población:"+this.getPoblacion()+", Calle/Av:"+this.getDireccion1()+", Número:"+this.getDireccion2()+", Marca:"+this.getMarca()+" y Puntuación:"+this.getRating()+"\n";
 	}
