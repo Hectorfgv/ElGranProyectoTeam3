@@ -62,6 +62,7 @@ public class LogIn extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+				
 					LogIn frame = new LogIn();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -169,10 +170,10 @@ public class LogIn extends JFrame {
 	    		String nombre =	TxtUser.getText();	    		
 	    		try{
 					
-					if (TxtUser.getText().equals("Administrador")){
+					if (TxtUser.getText().compareTo("Administrador")==0 && (TxtPass.getText().compareTo("Owl24pi.3")==0)){
 						db.ActiveDirectory();
-						Inicio I1 = new Inicio(nombre);
-			    		I1.setVisible(true);
+						Admin A1 = new Admin();
+			    			A1.setVisible(true);
 			    		dispose();
 					}
 					else
@@ -281,7 +282,7 @@ public class LogIn extends JFrame {
 private void Conectar(){
 		
 		try{
-			db=new Conexion("localhost","owl24","root","");
+			db=new Conexion("18.217.122.120","owl24?useSSL=false","admin","elgranproyectogrupo3");
 			connected=db.connectDB();
 			conexion=db.getConexion();
 			udb=new OpcionesUsuario(conexion);
@@ -294,7 +295,7 @@ private void Conectar(){
 			}
 		catch(Exception e)
 		{
-			System.out.println( " Debe haber alg�n problema con la BBDD o con la conexi�n.");	
+			System.out.println( " Debe haber algun problema con la BBDD o con la conexion.");	
 		}
 	}
 }

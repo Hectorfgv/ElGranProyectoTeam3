@@ -28,11 +28,11 @@ public class OpcionesMaquina {
 		this.conexion=(Connection) conexion2;
 	}
 	
-	public void insertarMaquina(String nombre,String poblacion,String direccion1,String direccion2){
+	public void insertarMaquina(String nombre,String poblacion,String direccion1,String direccion2, String marca){
 		try{
 			orden = (Statement) conexion.createStatement();
-		    String sql = "INSERT INTO maquinas (nombre,poblacion,direccion1,direccion2) " +
-		                   "VALUES ('"+nombre+"', '"+poblacion+"', '"+direccion1+"', '"+direccion2+"')";
+		    String sql = "INSERT INTO maquinas (nombre,poblacion,direccion1,direccion2,marca) " +
+		                   "VALUES ('"+nombre+"', '"+poblacion+"', '"+direccion1+"', '"+direccion2+"','"+marca+"')";
 		    orden.executeUpdate(sql);
 		    System.out.println("Usuario registrado con exito");
 		    
@@ -119,7 +119,7 @@ public class OpcionesMaquina {
 					 m1.setRating(rs.getDouble("rating"));
 						
 					 cont ++;
-					 jarea.setText(jarea.getText()+"Nombre:" +m1.getNombre()+", Población:"+m1.getPoblacion()+", Calle/Av:"+m1.getDireccion1()+", Número:"+m1.getDireccion2()+", Marca:"+m1.getMarca()+" y Puntuación:"+m1.getRating()+"\n"+"--------------------------->"+"\n");
+					 jarea.setText(jarea.getText()+"Nombre:" +m1.getNombre()+", Poblaciï¿½n:"+m1.getPoblacion()+", Calle/Av:"+m1.getDireccion1()+", Nï¿½mero:"+m1.getDireccion2()+", Marca:"+m1.getMarca()+" y Puntuaciï¿½n:"+m1.getRating()+"\n"+"--------------------------->"+"\n");
 					 
 			}
 			System.out.println(cont);

@@ -155,7 +155,7 @@ public class IngresoUsuarios extends JFrame {
 	private void Conectar(){
 		
 		try{
-			db=new Conexion("localhost","owl24","root","");
+			db=new Conexion("18.217.122.120","owl24?useSSL=false","admin","elgranproyectogrupo3");
 			connected=db.connectDB();
 			conexion=db.getConexion();
 			udb=new OpcionesUsuario(conexion);
@@ -168,7 +168,7 @@ public class IngresoUsuarios extends JFrame {
 			}
 		catch(Exception e)
 		{
-			System.out.println( " Debe haber algún problema con la BBDD o con la conexión.");	
+			System.out.println( " Debe haber algï¿½n problema con la BBDD o con la conexiï¿½n.");	
 		}
 	}
 }
