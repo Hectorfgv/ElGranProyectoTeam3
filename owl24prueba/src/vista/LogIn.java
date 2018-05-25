@@ -38,6 +38,8 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class LogIn extends JFrame {
 
@@ -76,8 +78,17 @@ public class LogIn extends JFrame {
 	 * Create the frame.
 	 */
 	public LogIn() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				int resp = JOptionPane.showConfirmDialog(LogIn.this, "¿Seguro que deseas salir?"); 
+				if(resp == JOptionPane.OK_OPTION) {
+					System.exit(0);
+				}
+			}
+		});
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 589, 386);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

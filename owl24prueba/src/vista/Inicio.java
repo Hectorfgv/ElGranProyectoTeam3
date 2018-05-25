@@ -39,6 +39,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.event.PopupMenuListener;
 import javax.swing.event.PopupMenuEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Inicio extends JFrame {
 
@@ -71,9 +73,19 @@ public class Inicio extends JFrame {
 	 * Create the frame.
 	 */
 	public Inicio(String nombre) {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				
+				int resp = JOptionPane.showConfirmDialog(Inicio.this, "¿Seguro que deseas salir?"); 
+				if(resp == JOptionPane.OK_OPTION) {
+					System.exit(0);
+				}
+			}
+		});
 		
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 399, 602);
 		contentPane = new JPanel();
 		contentPane.setForeground(Color.BLACK);

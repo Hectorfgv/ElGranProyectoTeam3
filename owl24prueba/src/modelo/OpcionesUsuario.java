@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -17,7 +19,7 @@ import vista.LogIn;
 import vista.Register;
 
 public class OpcionesUsuario {
-	//Atributos
+	
 		private int userid;
 		private boolean admin=false;
 		private String cuenta;
@@ -30,21 +32,15 @@ public class OpcionesUsuario {
 		private String pasword;
 		private Connection conexion;
 		private Statement orden = null;
-		//Metodos
-		/**
-		 * Método de enlace con la clase conexión
-		 * @param conexion2
-		 */
+		
 		public OpcionesUsuario(java.sql.Connection conexion2) {
 			this.conexion=(Connection) conexion2;
 		}
 
-	/**
-	 * Método de loginUsuarios
-	 * @param cuenta
-	 * @param pass
-	 * @return
-	 */
+		
+		
+		
+			
 			
 			public boolean loginUsuarios(String cuenta, String pass){
 				
@@ -119,17 +115,11 @@ public class OpcionesUsuario {
 				return logResult;
 			
 			}
-			/**
-			 * Método Para registrar Usuarios
-			 * @param cuenta
-			 * @param email
-			 * @param pass
-			 */
 			
-			public void registroUsuarios(String cuenta, String email, String pass){
+public void registroUsuarios(String cuenta, String email, String pass){
 				
 				ResultSet rs;
-				
+				Usuario u=new Usuario();
 				boolean log1=false;
 				boolean log2=false;
 				
@@ -152,17 +142,35 @@ public class OpcionesUsuario {
 						    }
 				    }  	
 				       
-				 } if ((log1==false) && (log2==false)) {
-					  		
+				 } 
+			        // PatrÃ³n para validar el email
+			        Pattern pattern = Pattern
+			                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+			                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{3})$");
+			 
+			        // El email a validar
+			        String emailpr = email;
+			 
+			        Matcher mather = pattern.matcher(emailpr);
+			 
+			        if (mather.find() == true && (log1==false) && (log2==false)) {
+			        	
+			        		JOptionPane.showMessageDialog(null, "Thank you!");
+
+			        		LogIn L1 =new LogIn();
+			        		L1.setVisible(true);
+
 					  	orden = (Statement) conexion.createStatement();
 					  String sql2 = "INSERT INTO usuarios (cuenta,email,pasword) " +
 					             "VALUES ('"+cuenta+"', '"+email+"', '"+pass+"')";
 					  orden.executeUpdate(sql2);
-					  Gracias G3 = new Gracias();
-					  G3.setVisible(true);
-					  Register R1 =new Register();
-					  R1.dispose();
-   }			
+			            
+			        } else {
+			        	JOptionPane.showMessageDialog(null, "Invalid mail");
+			           
+			        }
+				
+				 
 				 
 				   }catch(SQLException se){
 					     
@@ -192,45 +200,31 @@ public class OpcionesUsuario {
 			/*ARREGLAR METODO USSER SETTINGS*/
 			/*ARREGLAR METODO USSER SETTINGS*/
 			/*ARREGLAR METODO USSER SETTINGS*/
-
-public void ActualizaUsuarios(String nombre, String pass){
-	
+/*
+public void ActualizaNombreUsuarios(String nombreNuevo, String nombreActual){
 	ResultSet rs;
 	Usuario u=new Usuario();
 	boolean log1=false;
-	boolean log2=false;
+	
 	
 	try{
 		orden = (Statement) conexion.createStatement();
 
-	    String sql ="select cuenta, email FROM usuarios";
+	    String sql ="select cuenta FROM usuarios";
 	    rs = orden.executeQuery(sql);
 	    while(rs.next() && log1==false) {
 	    	
 	    String c=rs.getString("cuenta");
 	    
-	    if (c.compareTo(cuenta)==0) {
+	    if (c.compareTo(nombreNuevo)==1) {
 	    	System.out.println("Usuario ya existe");
 	    	log1=true;
-	    	 String e=rs.getString("email");
-			    if (e.compareTo(email)==0) {
-				    	System.out.println("Email ya existe");
-				    	log2=true;
+	    	orden = (Statement) conexion.createStatement();
+			  String sql2 = "MODIFY usuarios (cuenta) " +
+			             "VALUES ('"+nombreNuevo+"')";;
 			    }
 	    }  	
 	       
-	 } if ((log1==false) && (log2==false)) {
-		  		
-		  	orden = (Statement) conexion.createStatement();
-		  String sql2 = "INSERT INTO usuarios (cuenta,email,pasword) " +
-		             "VALUES ('"+cuenta+"', '"+email+"', '"+pass+"')";
-		  orden.executeUpdate(sql2);
-		  Gracias G3 = new Gracias();
-		  G3.setVisible(true);
-		  Register R1 =new Register();
-		  R1.dispose();
-}			
-	 
 	   }catch(SQLException se){
 		     
 		      se.printStackTrace();
@@ -253,5 +247,6 @@ public void ActualizaUsuarios(String nombre, String pass){
 		      }
 		}
 }
-
+	
+}*/
 }

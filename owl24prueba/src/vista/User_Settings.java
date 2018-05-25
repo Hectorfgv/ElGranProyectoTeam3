@@ -6,29 +6,48 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
 
 import javax.imageio.ImageIO;
+import javax.security.auth.callback.ConfirmationCallback;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import modelo.Conexion;
+import modelo.OpcionesUsuario;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class User_Settings extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField TXTMail;
+	private JTextField TXTNombre;
 	private JPasswordField TXTPass;
 	private JPasswordField TXTRPass;
+	private JLabel lblNombre;
+	
+	/**/
+	private Conexion db;
+	private OpcionesUsuario udb;
+	private Connection conexion;
+	private boolean connected=false;
 
 	/**
 	 * Launch the application.
@@ -50,7 +69,16 @@ public class User_Settings extends JFrame {
 	 * Create the frame.
 	 */
 	public User_Settings(String nombre) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				int resp = JOptionPane.showConfirmDialog(User_Settings.this, "¿Seguro que deseas salir?"); 
+				if(resp == JOptionPane.OK_OPTION) {
+					System.exit(0);
+				}
+			}
+		});
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 399, 602);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
@@ -58,10 +86,19 @@ public class User_Settings extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblSettings = new JLabel("");
-		lblSettings.setBackground(Color.ORANGE);
-		lblSettings.setBounds(0, 22, 120, 120);
-		contentPane.add(lblSettings);
+		JButton btnSettings = new JButton("");
+		btnSettings.setBorderPainted(false);
+		btnSettings.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				User_Settings US1 = new User_Settings(nombre);
+				US1.setVisible(true);
+			}
+		});
+		
+		btnSettings.setBackground(Color.ORANGE);
+		
+		btnSettings.setBounds(0, 22, 120, 120);
+		contentPane.add(btnSettings);
 		BufferedImage img = null;
 		try {
 			img = ImageIO.read(new File("./img/Perfil.png"));
@@ -70,14 +107,14 @@ public class User_Settings extends JFrame {
 		}
 		Image Dimg= img.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 		ImageIcon iIcon= new ImageIcon(Dimg);
-		lblSettings.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSettings.setIcon(iIcon);
+		btnSettings.setHorizontalAlignment(SwingConstants.CENTER);
+		btnSettings.setIcon(iIcon);
 		
 		
 		
 		
 		
-		JLabel lblNombre = new JLabel("");
+		lblNombre = new JLabel("");
 		lblNombre.setText(nombre);
 		lblNombre.setFont(new Font("Lucida Grande", Font.PLAIN, 40));
 		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
@@ -99,11 +136,12 @@ public class User_Settings extends JFrame {
 		lblMail.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMail.setIcon(mIcon);
 		
-		TXTMail = new JTextField();
-		TXTMail.setBackground(SystemColor.window);
-		TXTMail.setBounds(95, 179, 263, 50);
-		contentPane.add(TXTMail);
-		TXTMail.setColumns(10);
+		TXTNombre = new JTextField();
+		TXTNombre.setText(lblNombre.getText());
+		TXTNombre.setBackground(SystemColor.window);
+		TXTNombre.setBounds(95, 179, 263, 50);
+		contentPane.add(TXTNombre);
+		TXTNombre.setColumns(10);
 		
 		JLabel lblPass = new JLabel("");
 		lblPass.setHorizontalAlignment(SwingConstants.CENTER);
@@ -156,7 +194,9 @@ public class User_Settings extends JFrame {
 		JButton btnLogOut = new JButton("");
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				dispose();
+				
 			}
 		});
 		btnLogOut.setBounds(292, 478, 70, 70);
@@ -210,8 +250,8 @@ public class User_Settings extends JFrame {
 		lblNombre_Camb.setBounds(100, 154, 258, 31);
 		contentPane.add(lblNombre_Camb);
 		
-		JButton btnNewButton = new JButton("SEND!");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnSend = new JButton("SEND!");
+		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				String pass1=String.valueOf(TXTPass.getPassword());
@@ -221,20 +261,52 @@ public class User_Settings extends JFrame {
 					lblRepPass.setForeground(Color.RED);
 
 				}else {
+						/*Conprueba nombre*/
+					/*
+					 if(TXTNombre.getText().compareTo(lblNombre.getText()) == 1 ) {
+							Conectar();
+							try {
+								udb.ActualizaNombreUsuarios(TXTNombre.getText(), lblNombre.getText());
+							}
+							catch(Exception e1){}
+						}else {
+							CamNombre CN1 = new CamNombre();
+						}
 					
+						
+						
+				*/
 				}
 			
 			}
 		});
-		btnNewButton.setBounds(140, 478, 117, 61);
-		contentPane.add(btnNewButton);
+		btnSend.setBounds(140, 478, 117, 61);
+		contentPane.add(btnSend);
 		
+	}
 		
-		
-	
+		private void Conectar(){
+			
+			try{
+				db=new Conexion("18.217.122.120","owl24?useSSL=false","admin","elgranproyectogrupo3");
+				connected=db.connectDB();
+				conexion=db.getConexion();
+				udb=new OpcionesUsuario(conexion);
+				
+				if(connected==true) {
+					System.out.println("Entrada aceptada\n");
+				}
+				else System.out.println("No puede entrar");
+				
+				}
+			catch(Exception e)
+			{
+				System.out.println( " Debe haber alg�n problema con la BBDD o con la conexi�n.");	
+			}
+		}
 	
 	
 	
 	
 	}
-}
+
