@@ -1,0 +1,63 @@
+FUNCTIONS OWL24
+
+HOMEPAGE:
+
+-Name of the application: OWL24h
+-Logo: Image of the company.
+-Description: Are not it time for stores to be open? Use OWL24! And find the nearest 24 hours machines !!
+
+-In this page you can find, apart from the logo and the name of the company, a small description about the function of
+the application.
+
+-It will find two text fields in which you will be able to enter your name and password to be able to log in to the case
+that you already have an account created. If you do not have an account created you must click on the register button.
+
+-------------------------------------------------- -------------------------------------------------- ---------------------------------------
+
+REGISTRATION PAGE:
+
+In case you do not have an account you must register by entering the name and password you want, after
+you can register session.
+
+In this screen you will also find a button that will send you to the previous screen.
+It will check that there is a button called SEND which will send the data that you have entered in the registry.
+
+-------------------------------------------------- -------------------------------------------------- ---------------------------------------
+
+PAGE WHEN YOU REGISTER WITH NORMAL USER:
+
+When you register, a thank-you message will appear to register and you will be able to log in.
+You will have a button to return to the main page
+
+-------------------------------------------------- -------------------------------------------------- ---------------------------------------
+
+PAGE OF SEARCH PERFORMED:
+
+Once you have logged in you will find the initial screen of the application which you will be able to perform the search, in the bar
+search, from the area you want to find the nearest vending machines.
+
+You can see the results right in the text area just below. You will also see that there are 2 buttons, one that sets SEARCH and the other that sets CLEAN.
+With the SEARCH button it will start the search of the zone that you have entered in the search bar and with the CLEAN button you can delete the search,
+and go back to doing another search again.
+
+At the top left you can see your profile picture, in which you will be able to access by clicking on it.
+
+-------------------------------------------------- -------------------------------------------------- ---------------------------------------
+
+PAGE USER OPTIONS:
+
+-Profile picture
+- Personal data of the user (email, password)
+-Option to change email and password.
+-But back.
+-Boton FAVS
+-Bottom go to main page.
+
+-------------------------------------------------- -------------------------------------------------- ---------------------------------------
+
+PAGE FAVS:
+
+- Favorite machines
+-But back
+
+-------------------------------------------------- -------------------------------------------------- ---------------------------------------

@@ -1,0 +1,38 @@
+<!DOCTYPE html>  
+  
+<html xmlns="http://www.w3.org/1999/xhtml">  
+<head runat="server">  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+    <title>formHelp</title>  
+    <link rel="stylesheet" type="text/css" href="stylesForm.css"> 
+</head>  
+<body>
+
+    <form  class="contact_form" action="Correo.php">  
+        <div>  
+            <ul>  
+                <li>  
+                    <h2>Contacts</h2>  
+                    <span class="required_notification">* Data required</span>  
+                </li>  
+                <li>  
+                    <label for="name">Name:</label>  
+                    <input type="text" name="name" placeholder="Introduce your name" required />  
+                </li>  
+                <li>  
+                    <label for="email">Email:</label>  
+                    <input type="email" name="email" placeholder="info@developerji.com" required />  
+                    <span class="form_hint">Correct format: "name@something.com"</span>  
+                </li>  
+                <li>  
+                    <label for="message">Message:</label>  
+                    <textarea name="message" cols="40" rows="6" required></textarea>  
+                </li>  
+                <li>  
+                    <button class="submit" type="submit">Send Message</button>  
+                </li>  
+            </ul>  
+        </div>  
+    </form>  
+</body>  
+</html> 
