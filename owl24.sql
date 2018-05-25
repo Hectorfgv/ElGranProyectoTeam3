@@ -17,34 +17,25 @@ CREATE DATABASE IF NOT EXISTS `owl24` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `owl24`;
 
 -- Volcando estructura para tabla owl24.maquinas
-CREATE TABLE IF NOT EXISTS `maquinas` (
-  `machid` int(11) NOT NULL,
-  `nombre` varchar(15) NOT NULL,
-  `poblacion` varchar(20) NOT NULL,
-  `direccion1` varchar(15) NOT NULL,
-  `direccion2` int(8) NOT NULL,
-  `rating` double DEFAULT '0',
-  `marca` varchar(15) NOT NULL,
-  PRIMARY KEY (`machid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 -- Volcando datos para la tabla owl24.maquinas: ~14 rows (aproximadamente)
 /*!40000 ALTER TABLE `maquinas` DISABLE KEYS */;
 INSERT INTO `maquinas` (`machid`, `nombre`, `poblacion`, `direccion1`, `direccion2`, `rating`, `marca`) VALUES
-	(1, 'robocop', 'catarroja', 'en jaume', 14, 2.3, 'adidas'),
-	(2, 'doraemon', 'valencia', 'piruleta', 123, 4.5, 'nike'),
-	(3, 'prueba1', 'valencia', 'patata', 34, 3.4, 'nike'),
-	(4, 'prueba2', 'valencia', 'tomate', 34, 3.5, 'adidas'),
-	(5, 'prueba3', 'valencia', 'lechuga', 34, 3.7, 'nike'),
-	(6, 'prueba4', 'catarroja', 'platano', 34, 2.6, 'adidas'),
-	(7, 'prueba5', 'catarroja', 'manzana', 34, 4.2, 'nike'),
-	(8, 'prueba6', 'catarroja', 'melon', 34, 1.5, 'adidas'),
-	(9, 'prueba7', 'valencia', 'pera', 12, 1.4, 'adidas'),
-	(10, 'prueba8', 'valencia', 'sandia', 2, 4.9, 'nike'),
-	(11, 'prueba9', 'valencia', 'pepino', 3, 3.5, 'adidas'),
-	(12, 'prueba10', 'catarroja', 'melocoton', 14, 2.8, 'nike'),
-	(13, 'prueba11', 'catarroja', 'zanahoria', 23, 3.9, 'adidas'),
-	(14, 'prueba12', 'catarroja', 'cebolla', 25, 2.2, 'nike');
+	(1, 'robocop', 'catarroja', 'en jaume', 14, 2.3, 'pikapika'),
+	(2, 'doraemon', 'valencia', 'piruleta', 123, 4.5, 'delikia'),
+	(3, 'prueba1', 'valencia', 'patata', 34, 3.4, 'pikapika'),
+	(4, 'prueba2', 'valencia', 'tomate', 34, 3.5, 'delikia'),
+	(5, 'prueba3', 'valencia', 'lechuga', 34, 3.7, 'pikapika'),
+	(6, 'prueba4', 'catarroja', 'platano', 34, 2.6, 'delikia'),
+	(7, 'prueba5', 'catarroja', 'manzana', 34, 4.2, 'pikapika'),
+	(8, 'prueba6', 'catarroja', 'melon', 34, 1.5, 'delikia'),
+	(9, 'prueba7', 'valencia', 'pera', 12, 1.4, 'pikapika'),
+	(10, 'prueba8', 'valencia', 'sandia', 2, 4.9, 'delikia'),
+	(11, 'prueba9', 'valencia', 'pepino', 3, 3.5, 'pikapika'),
+	(12, 'prueba10', 'catarroja', 'melocoton', 14, 2.8, 'delikia'),
+	(13, 'prueba11', 'catarroja', 'zanahoria', 23, 3.9, 'pikapika'),
+	(14, 'prueba12', 'catarroja', 'cebolla', 25, 2.2, 'delikia');
 /*!40000 ALTER TABLE `maquinas` ENABLE KEYS */;
 
 -- Volcando estructura para tabla owl24.usuarios
