@@ -172,7 +172,7 @@ public class Inicio extends JFrame {
 	private void Conectar(){
 		
 		try{
-			db=new Conexion("localhost","owl24","root","");
+			db=new Conexion("18.217.122.120","owl24?useSSL=false","admin","elgranproyectogrupo3");
 			connected=db.connectDB();
 			conexion=db.getConexion();
 			mdb=new OpcionesMaquina(conexion);

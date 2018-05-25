@@ -86,7 +86,7 @@ public class Register extends JFrame {
 		contentPane.add(lblNewLabel);
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(new File("/Users/danielbc/Desktop/El Gran Proyecto/RegisterIcon.png"));
+			img = ImageIO.read(new File("./img/RegisterIcon.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -211,7 +211,7 @@ public class Register extends JFrame {
 private void Conectar(){
 	
 	try{
-		db=new Conexion("localhost","owl24","root","");
+		db=new Conexion("18.217.122.120","owl24?useSSL=false","admin","elgranproyectogrupo3");
 		connected=db.connectDB();
 		conexion=db.getConexion();
 		udb=new OpcionesUsuario(conexion);
