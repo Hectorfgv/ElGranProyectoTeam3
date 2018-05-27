@@ -41,6 +41,7 @@ import javax.swing.event.PopupMenuListener;
 import javax.swing.event.PopupMenuEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.SystemColor;
 
 public class Inicio extends JFrame {
 
@@ -101,6 +102,7 @@ public class Inicio extends JFrame {
 				
 				User_Settings U1 = new User_Settings(nombre);
 				U1.setVisible(true);
+				dispose();
 			}
 		});
 		btnPerfil.setBorderPainted(false);
@@ -125,10 +127,11 @@ public class Inicio extends JFrame {
 		contentPane.add(comboBreaker);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(7, 201, 369, 360);
+		scrollPane.setBounds(15, 201, 369, 360);
 		contentPane.add(scrollPane);
 		
 		JTextArea textArea = new JTextArea();
+		textArea.setBackground(SystemColor.window);
 		textArea.setEditable(false);
 		scrollPane.setViewportView(textArea);
 		textArea.setLineWrap(true);
@@ -165,13 +168,13 @@ public class Inicio extends JFrame {
 		
 		lblResultados = new JLabel("Search Results");
 		lblResultados.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		lblResultados.setBounds(124, 148, 138, 16);
+		lblResultados.setBounds(130, 148, 138, 16);
 		contentPane.add(lblResultados);
 		
 		label = new JLabel("...");
 		label.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBounds(162, 165, 61, 16);
+		label.setBounds(169, 165, 61, 16);
 		contentPane.add(label);
 		
 		textBusqueda = new JTextField();
@@ -185,6 +188,7 @@ public class Inicio extends JFrame {
 		
 		try{
 			db=new Conexion("18.217.122.120","owl24?useSSL=false","admin","elgranproyectogrupo3");
+			/*db=new Conexion("localhost","owl24","root","");*/
 			connected=db.connectDB();
 			conexion=db.getConexion();
 			mdb=new OpcionesMaquina(conexion);

@@ -49,7 +49,7 @@ public class Register extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -60,7 +60,7 @@ public class Register extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
@@ -94,8 +94,9 @@ public class Register extends JFrame {
 		contentPane.add(lblRegister);
 		
 		
-		/*Imagen registro*/
 		
+		
+		/*Imagen registro*/
 		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setBounds(263, 6, 103, 76);
 		contentPane.add(lblNewLabel);
@@ -164,6 +165,7 @@ public class Register extends JFrame {
 		lblDifPass.setBounds(38, 465, 152, 16);
 		contentPane.add(lblDifPass);
 		
+		/* Boton SEND */
 		JButton btnSend = new JButton("¡SEND!");
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -188,7 +190,9 @@ public class Register extends JFrame {
 						System.out.println( "User registred succesfully");
 						dispose();
 					
-					}}}
+					}}
+				
+				}
 			
 			});
 		
@@ -228,6 +232,7 @@ private void Conectar(){
 	
 	try{
 		db=new Conexion("18.217.122.120","owl24?useSSL=false","admin","elgranproyectogrupo3");
+		/*db=new Conexion("localhost","owl24","root","");*/
 		connected=db.connectDB();
 		conexion=db.getConexion();
 		udb=new OpcionesUsuario(conexion);

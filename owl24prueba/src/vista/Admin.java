@@ -109,7 +109,7 @@ public class Admin extends JFrame {
 		contentPane.add(TXTDir1);
 		TXTDir1.setColumns(10);
 		
-		JLabel lblDir2 = new JLabel("Direccion 2");
+		JLabel lblDir2 = new JLabel("Numero");
 		lblDir2.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
 		lblDir2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDir2.setBounds(12, 221, 150, 20);
@@ -135,7 +135,6 @@ public class Admin extends JFrame {
 				Conectar();
 				try{
 					mdb.insertarMaquina(TXTNombreM.getText(), TXTPoblacion.getText(),TXTDir1.getText(), TXTDir2.getText(), TXTMarca.getText());
-					dispose();
 				
 				}
 				catch(Exception e1)
@@ -171,7 +170,7 @@ public class Admin extends JFrame {
 				}
 				catch(Exception e1)
 				{
-					System.out.println( " Debe haber algún problema con la BBDD o con la conexión.");
+					System.out.println( " Debe haber algï¿½n problema con la BBDD o con la conexiï¿½n.");
 				}
 			}
 		});

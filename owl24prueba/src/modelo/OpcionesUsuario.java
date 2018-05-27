@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
-
+import com.mysql.jdbc.PreparedStatement;
 
 import modelo.Usuario;
 import vista.Gracias;
@@ -32,6 +32,7 @@ public class OpcionesUsuario {
 		private String pasword;
 		private Connection conexion;
 		private Statement orden = null;
+		private Statement orden2 = null;
 		
 		public OpcionesUsuario(java.sql.Connection conexion2) {
 			this.conexion=(Connection) conexion2;
@@ -41,7 +42,7 @@ public class OpcionesUsuario {
 		
 		
 			
-			
+		/*Metodo de LogIn de Ususarios*/
 			public boolean loginUsuarios(String cuenta, String pass){
 				
 				ResultSet rs;
@@ -115,8 +116,9 @@ public class OpcionesUsuario {
 				return logResult;
 			
 			}
-			
-public void registroUsuarios(String cuenta, String email, String pass){
+		
+		/* Metodo De Registro*/
+			public void registroUsuarios(String cuenta, String email, String pass){
 				
 				ResultSet rs;
 				Usuario u=new Usuario();
@@ -133,11 +135,13 @@ public void registroUsuarios(String cuenta, String email, String pass){
 				    String c=rs.getString("cuenta");
 				    
 				    if (c.compareTo(cuenta)==0) {
-				    	System.out.println("Usuario ya existe");
+			        	JOptionPane.showMessageDialog(null, "Existing user");
+			        	
+
 				    	log1=true;
 				    	 String e=rs.getString("email");
 						    if (e.compareTo(email)==0) {
-							    	System.out.println("Email ya existe");
+						    		JOptionPane.showMessageDialog(null, "Existing Mail");
 							    	log2=true;
 						    }
 				    }  	
@@ -155,7 +159,7 @@ public void registroUsuarios(String cuenta, String email, String pass){
 			 
 			        if (mather.find() == true && (log1==false) && (log2==false)) {
 			        	
-			        		JOptionPane.showMessageDialog(null, "Thank you!");
+			        		JOptionPane.showMessageDialog(null, "Thank you! Now you can Log In & enjoy ");
 
 			        		LogIn L1 =new LogIn();
 			        		L1.setVisible(true);
@@ -166,7 +170,7 @@ public void registroUsuarios(String cuenta, String email, String pass){
 					  orden.executeUpdate(sql2);
 			            
 			        } else {
-			        	JOptionPane.showMessageDialog(null, "Invalid mail");
+			        	JOptionPane.showMessageDialog(null, "Invalid mail \n example@example.com " );
 			           
 			        }
 				
@@ -195,58 +199,78 @@ public void registroUsuarios(String cuenta, String email, String pass){
 					}
 			}
 		
-			
-/*ARREGLAR METODO USSER SETTINGS*/
-			/*ARREGLAR METODO USSER SETTINGS*/
-			/*ARREGLAR METODO USSER SETTINGS*/
-			/*ARREGLAR METODO USSER SETTINGS*/
-/*
-public void ActualizaNombreUsuarios(String nombreNuevo, String nombreActual){
-	ResultSet rs;
-	Usuario u=new Usuario();
-	boolean log1=false;
-	
-	
-	try{
-		orden = (Statement) conexion.createStatement();
 
-	    String sql ="select cuenta FROM usuarios";
-	    rs = orden.executeQuery(sql);
-	    while(rs.next() && log1==false) {
-	    	
-	    String c=rs.getString("cuenta");
-	    
-	    if (c.compareTo(nombreNuevo)==1) {
-	    	System.out.println("Usuario ya existe");
-	    	log1=true;
-	    	orden = (Statement) conexion.createStatement();
-			  String sql2 = "MODIFY usuarios (cuenta) " +
-			             "VALUES ('"+nombreNuevo+"')";;
-			    }
-	    }  	
-	       
-	   }catch(SQLException se){
-		     
-		      se.printStackTrace();
-	   }catch(Exception e){
-		     
-		      e.printStackTrace();
-	   }finally{
-		      
-		      try{
-		         if(orden!=null)
-		        	 conexion.close();
-		      }catch(SQLException se){
-		    	  se.printStackTrace();
-		      }
-		      try{
-		         if(conexion!=null)
-		        	 conexion.close();
-		      	 }catch(SQLException se){
-		         se.printStackTrace();
-		      }
-		}
-}
-	
-}*/
+		/* Metodo Actualizar*/
+			
+			public void ActualizaNombreUsuarios(String cuenta1, String cuenta_nueva){
+				
+				ResultSet rs;
+				ResultSet rs2=null;
+				Usuario u=new Usuario();
+				boolean log1=false;
+				boolean log2=false;
+				
+				try{
+					orden = (Statement) conexion.createStatement();
+				    String sql ="select cuenta FROM usuarios";
+
+				    rs = orden.executeQuery(sql);
+				    while(rs.next() && log1==false) {
+				    	
+				    String c=rs.getString("cuenta");
+			    		System.out.println("Buscando " + cuenta1 + " para cambiarlo por " + cuenta_nueva);
+
+				    System.out.println(rs.getString("cuenta"));
+
+				    if (c.compareTo(cuenta1)==0) {
+				    	
+				    	System.out.println("Usuario encontrado");
+				    	
+				    	PreparedStatement ps = (PreparedStatement) conexion.prepareStatement(
+				    		      "UPDATE usuarios SET cuenta = ? WHERE cuenta = ?");
+
+				    		    // set the preparedstatement parameters
+				    		    ps.setString(1, cuenta_nueva);
+				    		    ps.setString(2, rs.getString("cuenta"));
+
+
+
+				    		    // call executeUpdate to execute our sql update statement
+				    		    ps.executeUpdate();
+				    		    ps.close();
+
+				    		    JOptionPane.showMessageDialog(null, "Changes correctly saved!");
+			           
+			            
+			            
+				    }  	
+				       
+				 } 
+
+				   }catch(SQLException se){
+					     
+					      se.printStackTrace();
+				   }catch(Exception e){
+					     
+					      e.printStackTrace();
+				   }finally{
+					      
+					      try{
+					         if(orden!=null)
+					        	 conexion.close();
+					      }catch(SQLException se){
+					    	  se.printStackTrace();
+					      }
+					      try{
+					         if(conexion!=null)
+					        	 conexion.close();
+					      	 }catch(SQLException se){
+					         se.printStackTrace();
+					      }
+					}
+			}
+			
+			
+				
+			
 }

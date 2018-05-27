@@ -294,6 +294,7 @@ private void Conectar(){
 		
 		try{
 			db=new Conexion("18.217.122.120","owl24?useSSL=false","admin","elgranproyectogrupo3");
+			/*db=new Conexion("localhost","owl24","root","");*/
 			connected=db.connectDB();
 			conexion=db.getConexion();
 			udb=new OpcionesUsuario(conexion);

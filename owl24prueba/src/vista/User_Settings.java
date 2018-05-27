@@ -113,6 +113,7 @@ public class User_Settings extends JFrame {
 		
 		
 		
+	/*Etiquta Nombre Dinamica */
 		
 		lblNombre = new JLabel("");
 		lblNombre.setText(nombre);
@@ -121,20 +122,26 @@ public class User_Settings extends JFrame {
 		lblNombre.setBounds(125, 22, 233, 134);
 		contentPane.add(lblNombre);
 		
-		JLabel lblMail = new JLabel("");
-		lblMail.setBackground(Color.YELLOW);
-		lblMail.setBounds(22, 174, 61, 61);
-		contentPane.add(lblMail);
+		
+	/*Imagen nombre*/
+	
+		JLabel lblimgnombre = new JLabel("");
+		lblimgnombre.setBackground(Color.YELLOW);
+		lblimgnombre.setBounds(22, 174, 61, 61);
+		contentPane.add(lblimgnombre);
 		BufferedImage imgM = null;
 		try {
-			imgM = ImageIO.read(new File("./img/mail.png"));
+			imgM = ImageIO.read(new File("./img/IMGname.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Image Mimg= imgM.getScaledInstance(50, 40, Image.SCALE_SMOOTH);
+		Image Mimg= imgM.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
 		ImageIcon mIcon = new ImageIcon(Mimg);
-		lblMail.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMail.setIcon(mIcon);
+		lblimgnombre.setHorizontalAlignment(SwingConstants.CENTER);
+		lblimgnombre.setIcon(mIcon);
+
+		
+	/* Introducir nombre */	
 		
 		TXTNombre = new JTextField();
 		TXTNombre.setText(lblNombre.getText());
@@ -142,7 +149,10 @@ public class User_Settings extends JFrame {
 		TXTNombre.setBounds(95, 179, 263, 50);
 		contentPane.add(TXTNombre);
 		TXTNombre.setColumns(10);
-		
+	
+	
+		/*Imagen Contraseña*/
+	
 		JLabel lblPass = new JLabel("");
 		lblPass.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPass.setBackground(Color.YELLOW);
@@ -158,13 +168,19 @@ public class User_Settings extends JFrame {
 		ImageIcon pIcon = new ImageIcon(Pimg);
 		lblPass.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPass.setIcon(pIcon);
+	
 		
+	/*Introducir pass1*/
+	
 		TXTPass = new JPasswordField();
 		TXTPass.setBackground(SystemColor.window);
 		TXTPass.setColumns(10);
 		TXTPass.setBounds(97, 285, 263, 50);
 		contentPane.add(TXTPass);
 
+		
+	/* Imagen Repetir Pass*/
+		
 		JLabel lblRpass = new JLabel("");
 		lblRpass.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRpass.setBackground(Color.YELLOW);
@@ -182,13 +198,16 @@ public class User_Settings extends JFrame {
 		lblRpass.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRpass.setIcon(rpIcon);
 		
-		
+	
+	/* Introducir Repetir contraseña */
+	
 		TXTRPass = new JPasswordField();
 		TXTRPass.setBackground(SystemColor.window);
 		TXTRPass.setColumns(10);
 		TXTRPass.setBounds(97, 391, 263, 50);
 		contentPane.add(TXTRPass);
 	
+		
 	/*Boton LogOut*/	
 	
 		JButton btnLogOut = new JButton("");
@@ -213,11 +232,17 @@ public class User_Settings extends JFrame {
 		btnLogOut.setHorizontalAlignment(SwingConstants.CENTER);
 		btnLogOut.setIcon(loIcon);
 		
+		
 	/*Boton Favoritos*/	
+		
 		JButton btnFav = new JButton("");
 		btnFav.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				User_Settings U2 = new User_Settings(nombre);
+				U2.setVisible(true);
 				dispose();
+			
 			}
 		});
 		btnFav.setBounds(35, 478, 70, 70);
@@ -225,7 +250,8 @@ public class User_Settings extends JFrame {
 		contentPane.add(btnFav);
 		BufferedImage imgF = null;
 		try {
-			imgF = ImageIO.read(new File("./img/Fav.png"));
+			imgF = ImageIO.read(new File("./img/back-icon.png"));
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -233,12 +259,18 @@ public class User_Settings extends JFrame {
 		ImageIcon fIcon = new ImageIcon(Fimg);
 		btnFav.setHorizontalAlignment(SwingConstants.CENTER);
 		btnFav.setIcon(fIcon);
-		
+	
+	
+	/*Etiqueta Contraseña*/
+	
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblPassword.setBounds(100, 257, 258, 31);
 		contentPane.add(lblPassword);
+
 		
+	/*Etiqueta Repetir Contraseña*/
+
 		JLabel lblRepPass = new JLabel("Repeat Password");
 		lblRepPass.setForeground(Color.BLACK);
 		lblRepPass.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
@@ -262,20 +294,22 @@ public class User_Settings extends JFrame {
 
 				}else {
 						/*Conprueba nombre*/
-					/*
-					 if(TXTNombre.getText().compareTo(lblNombre.getText()) == 1 ) {
+					
+					 if(TXTNombre.getText().compareTo(lblNombre.getText()) != 0) {
 							Conectar();
 							try {
-								udb.ActualizaNombreUsuarios(TXTNombre.getText(), lblNombre.getText());
+								System.out.println("Queso");
+								udb.ActualizaNombreUsuarios(lblNombre.getText(), TXTNombre.getText());
 							}
 							catch(Exception e1){}
 						}else {
 							CamNombre CN1 = new CamNombre();
+							CN1.setVisible(true);
 						}
 					
 						
 						
-				*/
+				
 				}
 			
 			}
@@ -289,6 +323,7 @@ public class User_Settings extends JFrame {
 			
 			try{
 				db=new Conexion("18.217.122.120","owl24?useSSL=false","admin","elgranproyectogrupo3");
+				/*db=new Conexion("localhost","owl24","root","");*/
 				connected=db.connectDB();
 				conexion=db.getConexion();
 				udb=new OpcionesUsuario(conexion);
@@ -301,7 +336,7 @@ public class User_Settings extends JFrame {
 				}
 			catch(Exception e)
 			{
-				System.out.println( " Debe haber alg�n problema con la BBDD o con la conexi�n.");	
+				System.out.println( " Debe haber algún problema con la BBDD o con la conexión.");	
 			}
 		}
 	
