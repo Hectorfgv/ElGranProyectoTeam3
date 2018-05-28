@@ -286,9 +286,10 @@ public class User_Settings extends JFrame {
 		JButton btnSend = new JButton("SEND!");
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				String pass1=String.valueOf(TXTPass.getPassword());
 				String pass2=String.valueOf(TXTRPass.getPassword());
+				
+
 				if(pass1.compareTo(pass2) != 0) {
 					lblPassword.setForeground(Color.RED);
 					lblRepPass.setForeground(Color.RED);
@@ -299,7 +300,6 @@ public class User_Settings extends JFrame {
 					 if(TXTNombre.getText().compareTo(lblNombre.getText()) != 0) {
 							Conectar();
 							try {
-								System.out.println("Queso");
 								udb.ActualizaNombreUsuarios(lblNombre.getText(), TXTNombre.getText());
 							}
 							catch(Exception e1){}
@@ -308,6 +308,17 @@ public class User_Settings extends JFrame {
 							CN1.setVisible(true);
 						}
 					
+					 if(TXTPass.getPassword().length > 0){
+			
+						Conectar();
+						try {
+							udb.ActualizaPassUsuarios(lblNombre.getText(), TXTPass.getText());
+						}
+						catch(Exception e1){}
+					
+					
+					
+					}
 						
 						
 				

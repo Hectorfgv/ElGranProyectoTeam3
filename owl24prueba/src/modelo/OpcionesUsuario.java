@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 
 import com.mysql.jdbc.PreparedStatement;
 
@@ -247,8 +248,63 @@ public class OpcionesUsuario {
 					      }
 					}
 			}
-			
-			
+		
+		/* Cambio contraseña */
+			public void ActualizaPassUsuarios(String cuenta1, String pass){
+				
+				ResultSet rs;
+				ResultSet rs2=null;
+				Usuario u=new Usuario();
+				boolean log1=false;
+				boolean log2=false;
+				
+				try{
+					orden = (Statement) conexion.createStatement();
+				    String sql ="select cuenta FROM usuarios";
+
+				    rs = orden.executeQuery(sql);
+				    while(rs.next() && log1==false) {
+				    String c=rs.getString("cuenta");
+				    if (c.compareTo(cuenta1)==0) {
+				    	
+				    	
+				    	PreparedStatement ps = (PreparedStatement) conexion.prepareStatement(
+				    		      "UPDATE usuarios SET pasword = ? WHERE cuenta = ?");
+				    		    ps.setString(1, pass);
+				    		    ps.setString(2, rs.getString("cuenta"));
+				    		    ps.executeUpdate();
+				    		    ps.close();
+
+				    		    JOptionPane.showMessageDialog(null, "Password correctly saved!");
+			           
+			            
+			            
+				    }  	
+				       
+				 } 
+
+				   }catch(SQLException se){
+					     
+					      se.printStackTrace();
+				   }catch(Exception e){
+					     
+					      e.printStackTrace();
+				   }finally{
+					      
+					      try{
+					         if(orden!=null)
+					        	 conexion.close();
+					      }catch(SQLException se){
+					    	  se.printStackTrace();
+					      }
+					      try{
+					         if(conexion!=null)
+					        	 conexion.close();
+					      	 }catch(SQLException se){
+					         se.printStackTrace();
+					      }
+					}
+			}	
 				
 			
 }
