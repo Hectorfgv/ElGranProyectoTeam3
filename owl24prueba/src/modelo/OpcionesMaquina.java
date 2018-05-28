@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 import com.mysql.jdbc.Connection;
@@ -51,7 +52,7 @@ public class OpcionesMaquina {
 		    String sql = "INSERT INTO maquinas (nombre,poblacion,direccion1,direccion2,marca) " +
 		                   "VALUES ('"+nombre+"', '"+poblacion+"', '"+direccion1+"', '"+direccion2+"','"+marca+"')";
 		    orden.executeUpdate(sql);
-		    System.out.println("Maquina registrada con exito");
+		    JOptionPane.showMessageDialog(null, "Machine added succesfully");
 		    
 		   }catch(SQLException se){
 			     

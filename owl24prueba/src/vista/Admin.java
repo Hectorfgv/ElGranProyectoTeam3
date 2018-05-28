@@ -16,9 +16,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.Color;
 import javax.swing.JSeparator;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import java.awt.TextArea;
@@ -27,6 +30,11 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class Admin extends JFrame {
 
@@ -64,8 +72,18 @@ public class Admin extends JFrame {
 	 * Create the frame.
 	 */
 	public Admin() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+			
+				int resp = JOptionPane.showConfirmDialog(Admin.this, "¿Seguro que deseas salir?"); 
+				if(resp == JOptionPane.OK_OPTION) {
+					System.exit(0);
+				}	
+			}
+		});
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 589, 386);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
@@ -207,7 +225,7 @@ public class Admin extends JFrame {
 			
 		});
 		
-		btnInsert.setBounds(190, 145, 79, 73);
+		btnInsert.setBounds(190, 70, 79, 73);
 		contentPane.add(btnInsert);
 		
 		TXTidMach = new JTextField();
@@ -278,7 +296,27 @@ public class Admin extends JFrame {
 		});
 		btnBuscar.setBounds(467, 56, 105, 67);
 		contentPane.add(btnBuscar);
-
+		
+		JButton btnLogOut2 = new JButton("");
+		btnLogOut2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LogIn LI3 = new LogIn();
+				LI3.setVisible(true);
+			}
+		});
+		btnLogOut2.setBounds(190, 213, 79, 79);
+		contentPane.add(btnLogOut2);
+		BufferedImage imgLO = null;
+		try {
+			imgLO = ImageIO.read(new File("./img/LogOut.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Image LOimg= imgLO.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+		ImageIcon loIcon = new ImageIcon(LOimg);
+		btnLogOut2.setHorizontalAlignment(SwingConstants.CENTER);
+		btnLogOut2.setIcon(loIcon);
+		btnLogOut2.setBorderPainted(false);
 
 	}
 	

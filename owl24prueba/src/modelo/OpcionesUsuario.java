@@ -44,7 +44,6 @@ public class OpcionesUsuario {
 			public boolean loginUsuarios(String cuenta, String pass){
 				
 				ResultSet rs;
-				Usuario u=new Usuario();
 				boolean log1=false;
 				boolean log2=false;
 				boolean logResult=false;
@@ -115,7 +114,6 @@ public class OpcionesUsuario {
 			public void registroUsuarios(String cuenta, String email, String pass){
 				
 				ResultSet rs;
-				Usuario u=new Usuario();
 				boolean log1=false;
 				boolean log2=false;
 				
@@ -196,10 +194,7 @@ public class OpcionesUsuario {
 			public void ActualizaNombreUsuarios(String cuenta1, String cuenta_nueva){
 				
 				ResultSet rs;
-				ResultSet rs2=null;
-				Usuario u=new Usuario();
 				boolean log1=false;
-				boolean log2=false;
 				
 				try{
 					orden = (Statement) conexion.createStatement();
@@ -253,10 +248,7 @@ public class OpcionesUsuario {
 			public void ActualizaPassUsuarios(String cuenta1, String pass){
 				
 				ResultSet rs;
-				ResultSet rs2=null;
-				Usuario u=new Usuario();
 				boolean log1=false;
-				boolean log2=false;
 				
 				try{
 					orden = (Statement) conexion.createStatement();
