@@ -38,11 +38,8 @@ public class OpcionesUsuario {
 			this.conexion=(Connection) conexion2;
 		}
 
-		
-		
-		
-			
 		/*Metodo de LogIn de Ususarios*/
+			
 			public boolean loginUsuarios(String cuenta, String pass){
 				
 				ResultSet rs;
@@ -60,30 +57,25 @@ public class OpcionesUsuario {
 				    String c=rs.getString("cuenta");
 				    
 				    if (c.compareTo(cuenta)==0) {
-				    System.out.println("Esta bien usuario");
 				    	log1=true;
 				    	 String p=rs.getString("pasword");
 						    if (p.compareTo(pass)==0) {
-							    System.out.println("Esta bien contraseña");
 							    	log2=true;
 							    	
 							    	
 						    }
 						    else
-						    System.out.println("Esta mal contraseña");
 						    logResult=false;
 
 						    
 						    if (log1 && log2)
 						    {
-						    	System.out.println("Autentificado con exito");
 						    	logResult=true;
 						    }
 						   
 				    }  	
 				   
 				    }if (log1==false) {
-				    	System.out.println("Esta mal usuario");
 				    	logResult=false;
 				    	
 				    	
@@ -118,6 +110,7 @@ public class OpcionesUsuario {
 			}
 		
 		/* Metodo De Registro*/
+			
 			public void registroUsuarios(String cuenta, String email, String pass){
 				
 				ResultSet rs;
@@ -159,10 +152,8 @@ public class OpcionesUsuario {
 			 
 			        if (mather.find() == true && (log1==false) && (log2==false)) {
 			        	
-			        		JOptionPane.showMessageDialog(null, "Thank you! Now you can Log In & enjoy ");
+			        		JOptionPane.showMessageDialog(null, "Thank you! Now you can Login & enjoy ");
 
-			        		LogIn L1 =new LogIn();
-			        		L1.setVisible(true);
 
 					  	orden = (Statement) conexion.createStatement();
 					  String sql2 = "INSERT INTO usuarios (cuenta,email,pasword) " +
@@ -199,7 +190,6 @@ public class OpcionesUsuario {
 					}
 			}
 		
-
 		/* Metodo Actualizar*/
 			
 			public void ActualizaNombreUsuarios(String cuenta1, String cuenta_nueva){
@@ -216,26 +206,14 @@ public class OpcionesUsuario {
 
 				    rs = orden.executeQuery(sql);
 				    while(rs.next() && log1==false) {
-				    	
 				    String c=rs.getString("cuenta");
-			    		System.out.println("Buscando " + cuenta1 + " para cambiarlo por " + cuenta_nueva);
-
-				    System.out.println(rs.getString("cuenta"));
-
 				    if (c.compareTo(cuenta1)==0) {
 				    	
-				    	System.out.println("Usuario encontrado");
 				    	
 				    	PreparedStatement ps = (PreparedStatement) conexion.prepareStatement(
 				    		      "UPDATE usuarios SET cuenta = ? WHERE cuenta = ?");
-
-				    		    // set the preparedstatement parameters
 				    		    ps.setString(1, cuenta_nueva);
 				    		    ps.setString(2, rs.getString("cuenta"));
-
-
-
-				    		    // call executeUpdate to execute our sql update statement
 				    		    ps.executeUpdate();
 				    		    ps.close();
 

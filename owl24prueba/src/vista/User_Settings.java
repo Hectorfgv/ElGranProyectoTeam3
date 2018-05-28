@@ -213,7 +213,8 @@ public class User_Settings extends JFrame {
 		JButton btnLogOut = new JButton("");
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				LogIn LI1 =new LogIn();
+				LI1.setVisible(true);
 				dispose();
 				
 			}
@@ -239,8 +240,8 @@ public class User_Settings extends JFrame {
 		btnFav.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				User_Settings U2 = new User_Settings(nombre);
-				U2.setVisible(true);
+				Inicio I2 = new Inicio(nombre);
+				I2.setVisible(true);
 				dispose();
 			
 			}
@@ -328,12 +329,7 @@ public class User_Settings extends JFrame {
 				conexion=db.getConexion();
 				udb=new OpcionesUsuario(conexion);
 				
-				if(connected==true) {
-					System.out.println("Entrada aceptada\n");
-				}
-				else System.out.println("No puede entrar");
-				
-				}
+			}
 			catch(Exception e)
 			{
 				System.out.println( " Debe haber algún problema con la BBDD o con la conexión.");	

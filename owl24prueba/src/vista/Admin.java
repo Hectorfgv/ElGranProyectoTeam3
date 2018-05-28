@@ -35,7 +35,7 @@ public class Admin extends JFrame {
 	private JTextField TXTPoblacion;
 	private JTextField TXTDir1;
 	private JTextField TXTDir2;
-	private JTextField textField_4;
+	private JTextField TXTidMach;
 	
 	/*Conexion*/
 	private Conexion db;
@@ -75,6 +75,7 @@ public class Admin extends JFrame {
 		
 		JLabel lblNombreMaquina = new JLabel("Nombre Maquina");
 		lblNombreMaquina.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		lblNombreMaquina.setForeground(Color.BLACK);
 		lblNombreMaquina.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNombreMaquina.setBounds(12, 8, 150, 20);
 		contentPane.add(lblNombreMaquina);
@@ -121,6 +122,18 @@ public class Admin extends JFrame {
 		contentPane.add(TXTDir2);
 		TXTDir2.setColumns(10);
 		
+		JLabel lblMarca = new JLabel("Marca");
+		lblMarca.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		lblMarca.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMarca.setBounds(12, 292, 150, 20);
+		contentPane.add(lblMarca);
+		
+		TXTMarca = new JTextField();
+		TXTMarca.setBackground(SystemColor.window);
+		TXTMarca.setBounds(12, 320, 150, 35);
+		contentPane.add(TXTMarca);
+		TXTMarca.setColumns(10);
+		
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
 		separator.setForeground(Color.BLACK);
@@ -131,29 +144,77 @@ public class Admin extends JFrame {
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				boolean valid = true;
+				if(TXTNombreM.getText().equals("")){
+					lblNombreMaquina.setForeground(Color.RED);
+					valid = false;
 				
-				Conectar();
-				try{
-					mdb.insertarMaquina(TXTNombreM.getText(), TXTPoblacion.getText(),TXTDir1.getText(), TXTDir2.getText(), TXTMarca.getText());
-				
+				}else {
+					lblNombreMaquina.setForeground(Color.BLACK);
+					valid = true;
 				}
-				catch(Exception e1)
-				{
-					System.out.println( "Maquina añadida");
+				if(TXTPoblacion.getText().equals("")){
+					valid = false;
+					lblPoblacion.setForeground(Color.RED);
 				
-				}}
+				}else {
+					lblPoblacion.setForeground(Color.BLACK);
+					valid = true;
+
+				}
+				if(TXTDir1.getText().equals("")) {
+					valid = false;
+					lblDir1.setForeground(Color.RED);
 				
+				}else {
+					lblDir1.setForeground(Color.BLACK);
+					valid = true;
+
+				}
+				if(TXTDir2.getText().equals("")) {
+					valid = false;
+					lblDir2.setForeground(Color.RED);
+				
+				}else{
+					lblDir2.setForeground(Color.BLACK);
+					valid = true;
+
+				}
+				if(TXTMarca.getText().equals("")) {
+					valid = false;
+					lblMarca.setForeground(Color.RED);
+					
+				}
+				else {
+					valid=true;
+					lblMarca.setForeground(Color.BLACK);
+
+				}
+				
+				if(valid == true) {
+					Conectar();
+					try{
+						mdb.insertarMaquina(TXTNombreM.getText(), TXTPoblacion.getText(),TXTDir1.getText(), TXTDir2.getText(), TXTMarca.getText());
+					
+					}
+					catch(Exception e1)
+					{
+						System.out.println( "Maquina añadida");
+					
+			}}
+				
+			}
 			
 		});
 		
 		btnInsert.setBounds(190, 145, 79, 73);
 		contentPane.add(btnInsert);
 		
-		textField_4 = new JTextField();
-		textField_4.setBackground(SystemColor.window);
-		textField_4.setBounds(305, 52, 150, 35);
-		contentPane.add(textField_4);
-		textField_4.setColumns(10);
+		TXTidMach = new JTextField();
+		TXTidMach.setBackground(SystemColor.window);
+		TXTidMach.setBounds(305, 52, 150, 35);
+		contentPane.add(TXTidMach);
+		TXTidMach.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("ID Maquina");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -161,12 +222,23 @@ public class Admin extends JFrame {
 		lblNewLabel_1.setBounds(305, 16, 150, 20);
 		contentPane.add(lblNewLabel_1);
 		
+		JTextArea lbleliminada = new JTextArea("Maquina \neliminada");
+		lbleliminada.setEditable(false);
+		lbleliminada.setForeground(Color.RED);
+		lbleliminada.setVisible(false);
+		lbleliminada.setBounds(467, 11, 105, 35);
+		contentPane.add(lbleliminada);
+		
+		
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Conectar();
 				try{
-					mdb.borrarMaquina(Integer.valueOf(textField_4.getText()));
+					if(mdb.borrarMaquina(Integer.valueOf(TXTidMach.getText()))==true) {
+						lbleliminada.setVisible(true);
+
+					}
 				}
 				catch(Exception e1)
 				{
@@ -206,18 +278,8 @@ public class Admin extends JFrame {
 		});
 		btnBuscar.setBounds(467, 56, 105, 67);
 		contentPane.add(btnBuscar);
-		
-		JLabel lblMarca = new JLabel("Marca");
-		lblMarca.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
-		lblMarca.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMarca.setBounds(12, 292, 150, 20);
-		contentPane.add(lblMarca);
-		
-		TXTMarca = new JTextField();
-		TXTMarca.setBackground(SystemColor.window);
-		TXTMarca.setBounds(12, 320, 150, 35);
-		contentPane.add(TXTMarca);
-		TXTMarca.setColumns(10);
+
+
 	}
 	
 	
@@ -241,4 +303,5 @@ public class Admin extends JFrame {
 			System.out.println( " Debe haber alg�n problema con la BBDD o con la conexi�n.");	
 		}
 		
-}}
+}	
+}

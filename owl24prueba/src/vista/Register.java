@@ -166,7 +166,7 @@ public class Register extends JFrame {
 		contentPane.add(lblDifPass);
 		
 		/* Boton SEND */
-		JButton btnSend = new JButton("¡SEND!");
+		JButton btnSend = new JButton("SEND!");
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -177,7 +177,6 @@ public class Register extends JFrame {
 					lblDifPass.setVisible(true);
 					
 				}else{
-					System.out.println( "Colectas");
 					
 					Conectar();
 					try{
@@ -187,7 +186,6 @@ public class Register extends JFrame {
 					}
 					catch(Exception e1)
 					{
-						System.out.println( "User registred succesfully");
 						dispose();
 					
 					}}

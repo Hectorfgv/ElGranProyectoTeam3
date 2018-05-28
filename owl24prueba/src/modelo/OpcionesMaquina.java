@@ -29,16 +29,16 @@ public class OpcionesMaquina {
 	private String marca;
 	private Connection conexion;
 	private Statement orden = null;
-	//Métodos
+	//Mï¿½todos
 	/**
-	 * Método para conexión con la clase Conexión
+	 * Mï¿½todo para conexiï¿½n con la clase Conexiï¿½n
 	 * @param conexion2
 	 */
 	public OpcionesMaquina(java.sql.Connection conexion2) {
 		this.conexion=(Connection) conexion2;
 	}
 	/**
-	 * Método para insertar Máquinas donde le pasamos cinco parámetros
+	 * Mï¿½todo para insertar Mï¿½quinas donde le pasamos cinco parï¿½metros
 	 * @param nombre
 	 * @param poblacion
 	 * @param direccion1
@@ -77,7 +77,7 @@ public class OpcionesMaquina {
 	}
 	
 	/**
-	 * Método para la búsqueda de máquinas y mostrarlas por el JTextArea
+	 * Mï¿½todo para la bï¿½squeda de mï¿½quinas y mostrarlas por el JTextArea
 	 * @param item
 	 * @param busqueda
 	 * @param jarea
@@ -130,7 +130,7 @@ public class OpcionesMaquina {
 		
 	}
 	/**
-	 * Método para mostrar la lista de máquinas existentes en la base de datos
+	 * Mï¿½todo para mostrar la lista de mï¿½quinas existentes en la base de datos
 	 * en el perfil de admin
 	 * @param textArea
 	 */
@@ -153,7 +153,7 @@ public class OpcionesMaquina {
 			     m.setDireccion2(rs.getInt("direccion2"));
 			     m.setMarca(rs.getString("marca"));
 			    
-				 textArea.setText(textArea.getText()+"Nombre: " +m.getNombre()+", Dirección: "+m.getDireccion1()+"\n"+"Número: "+m.getDireccion2()+", ID: "+m.getMachid()+"\n"+"--------------------------->"+"\n");
+				 textArea.setText(textArea.getText()+"Nombre: " +m.getNombre()+", Direcciï¿½n: "+m.getDireccion1()+"\n"+"Nï¿½mero: "+m.getDireccion2()+", ID: "+m.getMachid()+"\n"+"--------------------------->"+"\n");
 
 		    }
 		   
@@ -179,18 +179,19 @@ public class OpcionesMaquina {
 			      }
 		   }}
 	/**
-	 * El método borrarMáquina borra las máquinas de la base de datos
+	 * El mï¿½todo borrarMï¿½quina borra las mï¿½quinas de la base de datos
 	 * desde el panel de admin
 	 * @param id
 	 */
-		 public void borrarMaquina (int id){
-						
+		 public boolean borrarMaquina (int id){
+						boolean eliminada=false;
 						try{
 							orden = (Statement) conexion.createStatement();
 					
 						    String sql = "DELETE FROM maquinas WHERE machid= " + " ("+id+")";
 						    orden.executeUpdate(sql);
 						    System.out.println("Maquina borrada con exito");
+						    eliminada=true;
 						   
 						   }catch(SQLException se){
 							     
@@ -213,7 +214,9 @@ public class OpcionesMaquina {
 							         se.printStackTrace();
 							      }
 							}
-					}
+					
+		 return eliminada;
+				 }
 		   
 	
 }
